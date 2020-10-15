@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "140002869931",
+    "firebase_url": "https://rehapp-1b5f6.firebaseio.com",
+    "project_id": "rehapp-1b5f6",
+    "storage_bucket": "rehapp-1b5f6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:140002869931:android:9691de148e28d6b241edee",
+        "android_client_info": {
+          "package_name": "com.example.rehapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "140002869931-alb1vfljb13k00mfsblcrmj1khd640mp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rehapp",
+            "certificate_hash": "d4e65cdef70b265156cebd678c7ae71a057851ae"
+          }
+        },
+        {
+          "client_id": "140002869931-2r4k7m0ah1ls4sb2qtnv8p7v80377onh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuguJwePZnscsbqtu7tKQJfT75dwNYbyE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "140002869931-2r4k7m0ah1ls4sb2qtnv8p7v80377onh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
