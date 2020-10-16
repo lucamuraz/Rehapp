@@ -13,6 +13,7 @@ import com.example.rehapp.R;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -21,7 +22,7 @@ import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 
 public class Home extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
-
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,8 @@ public class Home extends AppCompatActivity {
         bottomNavigationView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_AUTO);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
         openFragment(HomeFragment.newInstance("", ""));
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setLogo(R.drawable.rehapp);
     }
 
     public void openFragment(Fragment fragment) {
