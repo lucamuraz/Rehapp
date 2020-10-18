@@ -2,6 +2,7 @@ package com.example.rehapp.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.rehapp.Fragment.CalendarFragment;
@@ -10,6 +11,7 @@ import com.example.rehapp.Fragment.NotifyFragment;
 import com.example.rehapp.Fragment.ReportFragment;
 import com.example.rehapp.R;
 
+import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -33,7 +35,25 @@ public class Home extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
         openFragment(HomeFragment.newInstance("", ""));
         toolbar = findViewById(R.id.toolbar);
-        toolbar.setLogo(R.drawable.rehapp);
+        setSupportActionBar(toolbar);
+        //getSupportActionBar().setLogo(R.drawable.ic_launcher1_foreground);
+
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_settings) {
+            Intent i = new Intent(this,SettingsActivity.class);
+            startActivity(i);
+        }
+        return true;
     }
 
     public void openFragment(Fragment fragment) {

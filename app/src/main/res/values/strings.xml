@@ -50,4 +50,25 @@
     <string name="hello_home_fragment">Hello home</string>
     <string name="notify">Notify</string>
     <string name="hello_report_fragment">Report</string>
+    <string name="settings">Impostazioni</string>
+    <string name="profile">Profilo</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+    <string name="EDSS">Grado EDSS</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_name">Nome</string>
+    <string name="signature_surname">Cognome</string>
+
+    <!-- Sync Preferences -->
+    <string name="notifications">Abilita le notifiche</string>
+    <string name="info_personali">Informazioni personali</string>
+    <string name="log_out">Effettua il logout</string>
+    <string name="setup_app">Impostazioni app</string>
+    <string name="info_app">Informazioni app</string>
+    <string name="dimensione_testo">Dimensione testo</string>
+    <string name="version">Versione</string>
 </resources>

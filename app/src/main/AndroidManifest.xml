@@ -11,6 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:ignore="RtlEnabled">
+        <activity android:name=".Activity.SettingsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.Home" />
+        </activity>
         <activity android:name=".Activity.Home" />
         <activity android:name=".Activity.RegisterActivity" />
         <activity android:name=".Activity.LogActivity" />
@@ -21,7 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.MainActivity"/>
+        <activity android:name=".Activity.MainActivity" />
     </application>
 
 </manifest>

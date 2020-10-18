@@ -1,0 +1,49 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/info_personali">
+
+        <EditTextPreference
+            app:key="signature"
+            app:title="@string/signature_name"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            app:key="signature"
+            app:title="@string/signature_surname"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            app:key="edss"
+            app:title="@string/EDSS"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/setup_app">
+
+        <SwitchPreferenceCompat
+            app:key="sync"
+            app:title="@string/notifications" />
+
+        <SeekBarPreference
+            app:key="dimensione testo"
+            app:title="@string/dimensione_testo"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Logout">
+
+        <Preference app:key="Logout"
+            app:title="@string/log_out"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/info_app">
+
+        <Preference app:key="Informazioni"
+            app:title="@string/version"
+            app:summary="0.0.1"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
