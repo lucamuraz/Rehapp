@@ -16,6 +16,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.Home" />
         </activity>
+        <activity android:name=".Activity.EnduranceActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.Home" />
+        </activity>
         <activity android:name=".Activity.Home" />
         <activity android:name=".Activity.RegisterActivity" />
         <activity android:name=".Activity.LogActivity" />

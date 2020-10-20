@@ -3,12 +3,12 @@
     <PreferenceCategory app:title="@string/info_personali">
 
         <EditTextPreference
-            app:key="signature"
+            app:key="signature_name"
             app:title="@string/signature_name"
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
-            app:key="signature"
+            app:key="signature_surname"
             app:title="@string/signature_surname"
             app:useSimpleSummaryProvider="true" />
 
