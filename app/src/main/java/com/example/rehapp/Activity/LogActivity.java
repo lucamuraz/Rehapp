@@ -2,6 +2,8 @@ package com.example.rehapp.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.SeekBarPreference;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.rehapp.R;
+import com.example.rehapp.SaveSharedPreferences;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -27,6 +30,8 @@ import java.util.Map;
 
 
 public class LogActivity extends AppCompatActivity{
+
+
 
     private static final String TAG = "info";
     FirebaseDatabase mDB;
@@ -77,6 +82,7 @@ public class LogActivity extends AppCompatActivity{
 
                 }
                 if(username.equals(myRef.getKey()) && password.equals(u)){
+                    saveLogin(username);
                     Intent i = new Intent(getApplicationContext(),Home.class);
                     i.putExtra("username", username);
                     startActivity(i);
@@ -92,6 +98,10 @@ public class LogActivity extends AppCompatActivity{
     }
     public void initDatabase(){
         mDB = FirebaseDatabase.getInstance();
+    }
+
+    private void saveLogin(String username){
+        SaveSharedPreferences.setUserName(this, username);
     }
 
 }

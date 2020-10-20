@@ -31,13 +31,6 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="Logout">
-
-        <Preference app:key="Logout"
-            app:title="@string/log_out"/>
-
-    </PreferenceCategory>
-
     <PreferenceCategory app:title="@string/info_app">
 
         <Preference app:key="Informazioni"

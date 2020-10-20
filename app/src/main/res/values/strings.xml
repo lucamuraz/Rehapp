@@ -66,7 +66,7 @@
     <!-- Sync Preferences -->
     <string name="notifications">Abilita le notifiche</string>
     <string name="info_personali">Informazioni personali</string>
-    <string name="log_out">Effettua il logout</string>
+    <string name="log_out">Logout</string>
     <string name="setup_app">Impostazioni app</string>
     <string name="info_app">Informazioni app</string>
     <string name="dimensione_testo">Dimensione testo</string>

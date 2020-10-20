@@ -19,6 +19,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.rehapp.SaveSharedPreferences;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 
@@ -51,6 +52,10 @@ public class Home extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_settings) {
             Intent i = new Intent(this,SettingsActivity.class);
+            startActivity(i);
+        }else if(item.getItemId() == R.id.action_logout){
+            SaveSharedPreferences.clearUserName(this);
+            Intent i = new Intent(this, LogActivity.class);
             startActivity(i);
         }
         return true;
