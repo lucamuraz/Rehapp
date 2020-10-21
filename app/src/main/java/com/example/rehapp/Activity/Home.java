@@ -38,8 +38,6 @@ public class Home extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //getSupportActionBar().setLogo(R.drawable.ic_launcher1_foreground);
-
-
     }
 
     @Override
@@ -54,7 +52,7 @@ public class Home extends AppCompatActivity {
             Intent i = new Intent(this,SettingsActivity.class);
             startActivity(i);
         }else if(item.getItemId() == R.id.action_logout){
-            SaveSharedPreferences.clearUserName(this);
+            SaveSharedPreferences.clearData(this);
             Intent i = new Intent(this, LogActivity.class);
             startActivity(i);
         }

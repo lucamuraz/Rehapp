@@ -3,18 +3,28 @@
     <PreferenceCategory app:title="@string/info_personali">
 
         <EditTextPreference
-            app:key="signature_name"
+            app:key="name"
             app:title="@string/signature_name"
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
-            app:key="signature_surname"
+            app:key="surname"
             app:title="@string/signature_surname"
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
             app:key="edss"
             app:title="@string/EDSS"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            app:key="email"
+            app:title="@string/email"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            app:key="password"
+            app:title="@string/password"
             app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>

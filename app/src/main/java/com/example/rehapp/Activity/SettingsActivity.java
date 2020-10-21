@@ -1,5 +1,6 @@
 package com.example.rehapp.Activity;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import androidx.preference.PreferenceFragmentCompat;
 import com.example.rehapp.R;
 
 public class SettingsActivity extends AppCompatActivity {
+    private final Context ctx=this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,8 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
+            //EditTextPreference signature=findPreference("name");
+            //signature.setText(SaveSharedPreferences.getUserName(this.getContext()));
         }
     }
 }
