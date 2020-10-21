@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.example.rehapp.Activity.AddActivity;
 import com.example.rehapp.Activity.EnduranceActivity;
 import com.example.rehapp.R;
+import com.example.rehapp.SaveSharedPreferences;
 
 import io.github.yavski.fabspeeddial.FabSpeedDial;
 import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
@@ -69,15 +70,17 @@ public class CalendarFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View rootView = inflater.inflate(R.layout.fragment_calendar, container, false);
-        FabSpeedDial fabSpeedDial = (FabSpeedDial)rootView.findViewById(R.id.fab_speed_dial);
+        FabSpeedDial fabSpeedDial = rootView.findViewById(R.id.fab_speed_dial);
         fabSpeedDial.setMenuListener(new SimpleMenuListenerAdapter() {
             @Override
             public boolean onMenuItemSelected(MenuItem menuItem) {
                 //TODO: Start some activity
                 if(menuItem.getItemId()==(R.id.activity_new)){
+                    SaveSharedPreferences.setActivityType(rootView.getContext(), "attività");
                     Intent i= new Intent(rootView.getContext(), AddActivity.class);
                     startActivity(i);
                 }else if(menuItem.getItemId()==(R.id.activity_new2)){
+                    SaveSharedPreferences.setActivityType(rootView.getContext(), "seduta");
                     Intent i= new Intent(rootView.getContext(), AddActivity.class);
                     startActivity(i);
                 }

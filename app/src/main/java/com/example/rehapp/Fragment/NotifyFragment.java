@@ -1,5 +1,6 @@
 package com.example.rehapp.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,7 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.rehapp.Activity.AddActivity;
+import com.example.rehapp.Activity.AddNotification;
 import com.example.rehapp.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -61,6 +65,15 @@ public class NotifyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notify, container, false);
+        final View rootView=inflater.inflate(R.layout.fragment_notify, container, false);
+        FloatingActionButton floatingActionButton=rootView.findViewById(R.id.floatingActionButton2);
+        floatingActionButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent i= new Intent(rootView.getContext(), AddNotification.class);
+                startActivity(i);
+            }
+        } );
+        return rootView;
     }
 }

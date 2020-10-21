@@ -37,7 +37,7 @@ public class Home extends AppCompatActivity {
         openFragment(HomeFragment.newInstance("", ""));
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setLogo(R.drawable.ic_launcher1_foreground);
+        //getSupportActionBar().setLogo(R.mipmap.ic_logo);
     }
 
     @Override
