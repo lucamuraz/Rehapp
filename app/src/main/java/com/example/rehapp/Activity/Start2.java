@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.rehapp.R;
+import com.example.rehapp.SaveSharedPreferences;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import androidx.fragment.app.*;
@@ -26,6 +27,7 @@ import androidx.fragment.app.*;
 public class Start2 extends Fragment {
     EditText e;
     FirebaseDatabase mDB;
+    Context ctx=this.getContext();
 
 
     @Override
@@ -33,18 +35,19 @@ public class Start2 extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_start2, container, false);
         initDatabase();
-        Bundle bundle = this.getArguments();
-        final String username = bundle.getString("username");
+        final String username = SaveSharedPreferences.getUser(ctx);
         final Button accedi = view.findViewById(R.id.finito);
         accedi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 e = getActivity().findViewById(R.id.edss);
-                int edss = Integer.parseInt(e.getText().toString());
+                String edss = e.getText().toString();
                 DatabaseReference myRef = mDB.getReference("Utenti").child(username).child("EDSS");
                 myRef.setValue(edss);
                 transaction.commit();
+
+                SaveSharedPreferences.setUserEdss(ctx, edss);
             }
         });
         return view;

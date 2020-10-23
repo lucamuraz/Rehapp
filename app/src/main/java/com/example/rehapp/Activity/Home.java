@@ -27,6 +27,8 @@ public class Home extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     Toolbar toolbar;
 
+    Fragment fragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

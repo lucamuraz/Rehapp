@@ -11,6 +11,7 @@ public class SaveSharedPreferences{
     static final String PREF_USER_EMAIL= "email";
     static final String PREF_USER_PSW= "password";
     static final String PREF_USER_EDSS= "edss";
+    static final String PREF_USER= "user";
 
     static final String ACTIVITY_TYPE="type";
 
@@ -55,8 +56,18 @@ public class SaveSharedPreferences{
         editor.apply();
     }
 
+    public static void setUser(Context ctx, String user) {
+        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
+        editor.putString(PREF_USER, user);
+        editor.apply();
+    }
+
     public static String getUserName(Context ctx) {
         return getSharedPreferences(ctx).getString(PREF_USER_NAME, "");
+    }
+
+    public static String getUser(Context ctx) {
+        return getSharedPreferences(ctx).getString(PREF_USER, "");
     }
 
     public static String getUserSurname(Context ctx) {
@@ -84,4 +95,5 @@ public class SaveSharedPreferences{
         editor.clear(); //clear all stored data
         editor.apply();
     }
+
 }

@@ -83,4 +83,7 @@
     <string name="tipologia_attività">Tipologia attività</string>
     <string name="channel_name">Notifiche</string>
     <string name="channel_description">Canale notifiche</string>
+    <string name="username">Username</string>
+    <string name="titolo_notifica">Titolo</string>
+    <string name="ora_notifica">Orario</string>
 </resources>

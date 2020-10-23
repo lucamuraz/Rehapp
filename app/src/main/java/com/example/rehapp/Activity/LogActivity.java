@@ -31,6 +31,8 @@ public class LogActivity extends AppCompatActivity{
     String email = null;
     String edss = null;
 
+    String username;
+
     private static final String TAG = "info";
     FirebaseDatabase mDB;
     Map<String, Object> map = new HashMap<>();
@@ -53,7 +55,7 @@ public class LogActivity extends AppCompatActivity{
     public void accedi(View view) {
         EditText u = findViewById(R.id.username);
         EditText p = findViewById(R.id.password);
-        String username = u.getText().toString();
+        username = u.getText().toString();
         String password = p.getText().toString();
         loginUser(username,password);
     }
@@ -119,6 +121,7 @@ public class LogActivity extends AppCompatActivity{
         SaveSharedPreferences.setUserEmail(this, email);
         SaveSharedPreferences.setUserPassword(this, psw);
         SaveSharedPreferences.setUserEdss(this, edss);
+        SaveSharedPreferences.setUser(this, username);
     }
 
 }
