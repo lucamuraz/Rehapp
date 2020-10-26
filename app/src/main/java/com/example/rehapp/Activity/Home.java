@@ -19,12 +19,15 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.rehapp.SaveSharedPreferences;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 
 public class Home extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     Toolbar toolbar;
+
+    Fragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +39,7 @@ public class Home extends AppCompatActivity {
         openFragment(HomeFragment.newInstance("", ""));
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setLogo(R.drawable.ic_launcher1_foreground);
-
-
+        //getSupportActionBar().setLogo(R.mipmap.ic_logo);
     }
 
     @Override
@@ -51,6 +52,10 @@ public class Home extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_settings) {
             Intent i = new Intent(this,SettingsActivity.class);
+            startActivity(i);
+        }else if(item.getItemId() == R.id.action_logout){
+            SaveSharedPreferences.clearData(this);
+            Intent i = new Intent(this, LogActivity.class);
             startActivity(i);
         }
         return true;

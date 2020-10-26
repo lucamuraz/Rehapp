@@ -2,19 +2,16 @@ package com.example.rehapp.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.rehapp.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.example.rehapp.SaveSharedPreferences;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,6 +24,14 @@ import java.util.Map;
 
 
 public class LogActivity extends AppCompatActivity{
+
+    String psw = null;
+    String name = null;
+    String surname = null;
+    String email = null;
+    String edss = null;
+
+    String username;
 
     private static final String TAG = "info";
     FirebaseDatabase mDB;
@@ -50,7 +55,7 @@ public class LogActivity extends AppCompatActivity{
     public void accedi(View view) {
         EditText u = findViewById(R.id.username);
         EditText p = findViewById(R.id.password);
-        String username = u.getText().toString();
+        username = u.getText().toString();
         String password = p.getText().toString();
         loginUser(username,password);
     }
@@ -66,17 +71,32 @@ public class LogActivity extends AppCompatActivity{
             public void onDataChange(DataSnapshot dataSnapshot) {
                 map =(Map<String, Object>) dataSnapshot.getValue();
                 Log.i(TAG, "Value is: " + map);
-                Iterator it = map.entrySet().iterator();
-                String u = null;
+                Iterator<Map.Entry<String, Object>> it = map.entrySet().iterator();
+
                 while(it.hasNext()){
-                    Map.Entry  p =(Map.Entry) it.next();
-                    if(map.containsKey("Password")) {
-                        u = p.getValue().toString();
+                    Map.Entry<String, Object> p = it.next();
+                    switch (p.getKey()) {
+                        case "Password":
+                            psw = p.getValue().toString();
+                            break;
+                        case "Nome":
+                            name = p.getValue().toString();
+                            break;
+                        case "Cognome":
+                            surname = p.getValue().toString();
+                            break;
+                        case "Email":
+                            email = p.getValue().toString();
+                            break;
+                        case "EDSS":
+                            edss = p.getValue().toString();
+                            break;
                     }
-                    Log.i(TAG, "Value is: " + u); // legge la password.
+                    Log.i(TAG, "Value is: " + psw); // legge la password.
 
                 }
-                if(username.equals(myRef.getKey()) && password.equals(u)){
+                if(username.equals(myRef.getKey()) && password.equals(psw)){
+                    saveLogin();
                     Intent i = new Intent(getApplicationContext(),Home.class);
                     i.putExtra("username", username);
                     startActivity(i);
@@ -84,14 +104,24 @@ public class LogActivity extends AppCompatActivity{
                 myRef.removeEventListener(this);
             }
             @Override
-            public void onCancelled(DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) {
                 // Failed to read value
                 Log.i(TAG, "Failed to read value.", error.toException());
             }
         });
     }
+
     public void initDatabase(){
         mDB = FirebaseDatabase.getInstance();
+    }
+
+    private void saveLogin(){
+        SaveSharedPreferences.setUserName(this, name);
+        SaveSharedPreferences.setUserSurname(this, surname);
+        SaveSharedPreferences.setUserEmail(this, email);
+        SaveSharedPreferences.setUserPassword(this, psw);
+        SaveSharedPreferences.setUserEdss(this, edss);
+        SaveSharedPreferences.setUser(this, username);
     }
 
 }

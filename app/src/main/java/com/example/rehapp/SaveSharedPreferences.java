@@ -10,7 +10,11 @@ public class SaveSharedPreferences{
     static final String PREF_USER_SURNAME= "surname";
     static final String PREF_USER_EMAIL= "email";
     static final String PREF_USER_PSW= "password";
+<<<<<<< HEAD
     static final String PREF_USER_EDSS= "EDSS";
+=======
+    static final String PREF_USER_EDSS= "edss";
+>>>>>>> origin/master
     static final String PREF_USER= "user";
 
     static final String ACTIVITY_TYPE="type";

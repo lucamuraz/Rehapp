@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.rehapp.R;
+import com.example.rehapp.SaveSharedPreferences;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -18,12 +19,19 @@ public class Start extends Fragment {
 
     private static final String TAG = "info";
     FirebaseDatabase mDB;
-    EditText n;
-    EditText c;
-    EditText e;
-    EditText u;
-    EditText em;
+    EditText nome;
+    EditText cognome;
+    EditText età;
+    EditText username;
+    EditText email;
     EditText pwd;
+
+    String name;
+    String surname;
+    String age;
+    String user;
+    String mail;
+    String password;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,41 +46,40 @@ public class Start extends Fragment {
                 //TODO parte lo Start1.
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 
-                u = getActivity().findViewById(R.id.username);
-                String username = u.getText().toString();
-                DatabaseReference myRef4 = mDB.getReference("Utenti").child(username);
-                myRef4.setValue(username);
+                username = getActivity().findViewById(R.id.username);
+                user = username.getText().toString();
+                DatabaseReference myRef4 = mDB.getReference("Utenti").child(user);
+                myRef4.setValue(user);
 
-                n = getActivity().findViewById(R.id.nome1);
-                String nome = n.getText().toString();
-                DatabaseReference myRef = mDB.getReference("Utenti").child(username).child("Nome");
-                myRef.setValue(nome);
+                nome = getActivity().findViewById(R.id.nome1);
+                name = nome.getText().toString();
+                DatabaseReference myRef = mDB.getReference("Utenti").child(user).child("Nome");
+                myRef.setValue(name);
 
-                c = getActivity().findViewById(R.id.cognome);
-                String cognome = c.getText().toString();
-                DatabaseReference myRef1 = mDB.getReference("Utenti").child(username).child("Cognome");
-                myRef1.setValue(cognome);
+                cognome = getActivity().findViewById(R.id.cognome);
+                surname = cognome.getText().toString();
+                DatabaseReference myRef1 = mDB.getReference("Utenti").child(user).child("Cognome");
+                myRef1.setValue(surname);
 
-                e = getActivity().findViewById(R.id.numero);
-                int eta = Integer.parseInt(e.getText().toString());
-                DatabaseReference myRef3 = mDB.getReference("Utenti").child(username).child("Età");
-                myRef3.setValue(eta);
+                età = getActivity().findViewById(R.id.numero);
+                age = età.getText().toString();
+                DatabaseReference myRef3 = mDB.getReference("Utenti").child(user).child("Età");
+                myRef3.setValue(age);
 
-                em = getActivity().findViewById(R.id.email);
-                String email = em.getText().toString();
-                DatabaseReference myRef5 = mDB.getReference("Utenti").child(username).child("Email");
-                myRef5.setValue(email);
+                email = getActivity().findViewById(R.id.email);
+                mail = email.getText().toString();
+                DatabaseReference myRef5 = mDB.getReference("Utenti").child(user).child("Email");
+                myRef5.setValue(mail);
 
                 pwd = getActivity().findViewById(R.id.password);
-                String password = pwd.getText().toString();
-                DatabaseReference myRef6 = mDB.getReference("Utenti").child(username).child("Password");
+                password = pwd.getText().toString();
+                DatabaseReference myRef6 = mDB.getReference("Utenti").child(user).child("Password");
                 myRef6.setValue(password);
-                Bundle bundle = new Bundle();
-                bundle.putString("username",username);
                 Start2 second = new Start2();
-                second.setArguments(bundle);
                 transaction.replace(R.id.fragment,second);
                 transaction.commit();
+
+                saveLogin();
 
             }
         });
@@ -81,5 +88,13 @@ public class Start extends Fragment {
 
     public void initDatabase(){
         mDB = FirebaseDatabase.getInstance();
+    }
+
+    private void saveLogin(){
+        SaveSharedPreferences.setUserName(this.getContext(), name);
+        SaveSharedPreferences.setUserSurname(this.getContext(), surname);
+        SaveSharedPreferences.setUserEmail(this.getContext(), mail);
+        SaveSharedPreferences.setUserPassword(this.getContext(), password);
+        SaveSharedPreferences.setUser(this.getContext(), user);
     }
 }

@@ -1,14 +1,22 @@
 package com.example.rehapp.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.rehapp.Activity.AddActivity;
+import com.example.rehapp.Activity.EnduranceActivity;
 import com.example.rehapp.R;
+import com.example.rehapp.SaveSharedPreferences;
+
+import io.github.yavski.fabspeeddial.FabSpeedDial;
+import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -61,6 +69,24 @@ public class CalendarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_calendar, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_calendar, container, false);
+        FabSpeedDial fabSpeedDial = rootView.findViewById(R.id.fab_speed_dial);
+        fabSpeedDial.setMenuListener(new SimpleMenuListenerAdapter() {
+            @Override
+            public boolean onMenuItemSelected(MenuItem menuItem) {
+                //TODO: Start some activity
+                if(menuItem.getItemId()==(R.id.activity_new)){
+                    SaveSharedPreferences.setActivityType(rootView.getContext(), "attività");
+                    Intent i= new Intent(rootView.getContext(), AddActivity.class);
+                    startActivity(i);
+                }else if(menuItem.getItemId()==(R.id.activity_new2)){
+                    SaveSharedPreferences.setActivityType(rootView.getContext(), "seduta");
+                    Intent i= new Intent(rootView.getContext(), AddActivity.class);
+                    startActivity(i);
+                }
+                return false;
+            }
+        });
+        return rootView;
     }
 }

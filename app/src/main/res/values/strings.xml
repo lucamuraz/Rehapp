@@ -66,9 +66,24 @@
     <!-- Sync Preferences -->
     <string name="notifications">Abilita le notifiche</string>
     <string name="info_personali">Informazioni personali</string>
-    <string name="log_out">Effettua il logout</string>
+    <string name="log_out">Logout</string>
     <string name="setup_app">Impostazioni app</string>
     <string name="info_app">Informazioni app</string>
     <string name="dimensione_testo">Dimensione testo</string>
     <string name="version">Versione</string>
+    <string name="addAct">Aggiungi attività</string>
+    <string name="addAct2">Aggiungi riabilitazione</string>
+    <string name="aggiungi">Aggiungi</string>
+    
+    <string name="preference_file_key">com.example.myapp.PREFERENCE_FILE_KEY</string>
+    <string name="email">Email</string>
+    <string name="titolo_attività">Titolo attività</string>
+    <string name="durata_attività">Durata attivtà (min)</string>
+    <string name="data">Data</string>
+    <string name="tipologia_attività">Tipologia attività</string>
+    <string name="channel_name">Notifiche</string>
+    <string name="channel_description">Canale notifiche</string>
+    <string name="username">Username</string>
+    <string name="titolo_notifica">Titolo</string>
+    <string name="ora_notifica">Orario</string>
 </resources>
