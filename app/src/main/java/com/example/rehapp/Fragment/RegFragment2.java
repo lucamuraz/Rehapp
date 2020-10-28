@@ -43,7 +43,7 @@ public class RegFragment2 extends Fragment {
                 String p = password.getText().toString();
                 //TODO passare al secondo fragment
                 RegFragment3 fragment3 = new RegFragment3();
-                transaction.replace(R.id.Fragment, fragment3);
+                transaction.replace(R.id.fragment, fragment3);
                 transaction.commit();
                 //TODO salvare le credenziali di accesso dell'utente
                 saveData(u,e,p);

@@ -34,7 +34,7 @@ public class RegFragment extends Fragment {
                 //TODO passare al secondo fragment
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 RegFragment2 fragment2 = new RegFragment2();
-                transaction.replace(R.id.Fragment, fragment2);
+                transaction.replace(R.id.fragment, fragment2);
                 transaction.commit();
                 // TODO salvo nome e cognome dell'utente
                 saveData(n,c);

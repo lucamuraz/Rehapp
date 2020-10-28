@@ -34,6 +34,7 @@
         <activity android:name=".Activity.MainActivity" />
         <activity android:name=".Activity.AddActivity" />
         <activity android:name=".Activity.AddNotification"/>
+        <activity android:name=".Activity.ActivityEdit"/>
     </application>
 
 </manifest>

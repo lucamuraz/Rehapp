@@ -65,7 +65,7 @@
                     app:layout_constraintHorizontal_bias="0.832"
                     app:layout_constraintStart_toEndOf="@+id/minore"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_directions_run_24px"
+                    app:srcCompat="@drawable/ic_keyboard_arrow_left_24px"
                     app:tint="@color/colorBtn" />
 
 

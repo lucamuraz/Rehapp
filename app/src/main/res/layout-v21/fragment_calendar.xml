@@ -12,30 +12,33 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="55dp" />
 
-    <io.github.yavski.fabspeeddial.FabSpeedDial
-        android:id="@+id/fab_speed_dial"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginBottom="55dp"
-        app:fabGravity="bottom_end"
-        app:fabMenu="@menu/floating_menu"
-        app:miniFabBackgroundTint="@android:color/white"
-        app:miniFabDrawableTint="?attr/colorPrimaryDark"
-        app:miniFabTitleTextColor="?attr/colorPrimaryDark" />
+        android:layout_marginStart="320dp"
+        android:clickable="true"
+        android:elevation="1dp"
+        android:layout_marginBottom="80dp"
+        android:layout_marginEnd="20dp"
+        app:srcCompat="@drawable/fab_add_clear_selector"
+        android:focusable="true"/>
 
     <View
         android:id="@+id/divider3"
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="5dp"
         android:layout_height="1dp"
+        android:layout_marginHorizontal="5dp"
         android:layout_marginTop="395dp"
         android:layout_marginBottom="398dp"
         android:background="?android:attr/listDivider" />
 
-    <androidx.viewpager.widget.ViewPager
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_cal"
         android:layout_width="match_parent"
-        android:layout_height="335dp"
-        android:layout_gravity="bottom"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp" />
+
 
 </FrameLayout>

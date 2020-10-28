@@ -3,6 +3,7 @@ package com.example.rehapp.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,10 +13,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.rehapp.AppManager;
+import com.example.rehapp.DAO.Model;
+import com.example.rehapp.Model.Activity;
 import com.example.rehapp.R;
 import com.example.rehapp.SaveSharedPreferences;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,16 +25,17 @@ import java.util.List;
 public class AddActivity extends AppCompatActivity {
 
     Context ctx=this;
-    FirebaseDatabase mDB;
 
-    Spinner spinner;
-    List<String> spinnerElmts;
+    final Model m = new Model();
+
+    Spinner type;
+    Spinner category;
+    List<String> categoryElmts;
+    List<String> typeElmts;
     EditText duration;
     EditText date;
     EditText title;
     Toolbar toolbar;
-
-    String category;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,71 +52,69 @@ public class AddActivity extends AppCompatActivity {
             }
         });
 
-        initDatabase();
 
         super.onCreate(savedInstanceState);
 
+        category=findViewById(R.id.spinner2);
+        type=findViewById(R.id.spinner3);
         duration=findViewById(R.id.durata);
         date=findViewById(R.id.editTextDate);
         title=findViewById(R.id.titolo_attività);
 
-        spinner=findViewById(R.id.spinner2);
-        if(SaveSharedPreferences.getActivityType(this).equals("attività")){
-            spinnerElmts= new ArrayList<>();
-            spinnerElmts.add("Resistenza");
-            spinnerElmts.add("Forza");
-            category="Allenamenti";
-        }else if(SaveSharedPreferences.getActivityType(this).equals("seduta")){
-            spinnerElmts= new ArrayList<>();
-            spinnerElmts.add("Seduta riabilitativa");
-            category="Sedute";
-        }
+
+        categoryElmts=new ArrayList<>();
+        categoryElmts.add("Seduta riabilitativa");
+        categoryElmts.add("Allenamento");
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, spinnerElmts);
+                this, android.R.layout.simple_spinner_item, categoryElmts);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        category.setAdapter(adapter);
+
+        category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(category.getSelectedItem().equals("Seduta riabilitativa")){
+                    typeElmts= new ArrayList<>();
+                    typeElmts.add("Standard");
+                }else if(category.getSelectedItem().equals("Allenamento")){
+                    typeElmts= new ArrayList<>();
+                    typeElmts.add("Resistenza");
+                    typeElmts.add("Forza");
+                }
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                        ctx, android.R.layout.simple_spinner_item, typeElmts);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                type.setAdapter(adapter);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+
+        });
 
         Button button = findViewById(R.id.aggiungi);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String username=SaveSharedPreferences.getUser(ctx);
-                String id="004";
+                String categoria=category.getSelectedItem().toString();
+                String id="";
+                id=AppManager.getInstance().getLastId();
+                AppManager.getInstance().setLastId("00"+id.substring(2));
 
-                if(category.equals("Allenamenti")){
-                    id="act_"+""; //todo generare id progressivo
-                    DatabaseReference myRef0 = mDB.getReference("Utenti").child(username).child("Attività").child(category).child(id);
-                    myRef0.setValue(id);
-
-                    String type=spinner.getSelectedItem().toString();
-                    DatabaseReference myRef1 = mDB.getReference("Utenti").child(username).child("Attività").child(category).child(id).child("Tipologia");
-                    myRef1.setValue(type);
-
-                }else if(category.equals("Sedute")){
-                    id="seduta_"+""; //todo generare id progressivo
-                    DatabaseReference myRef0 = mDB.getReference("Utenti").child(username).child("Attività").child("Sedute").child(id);
-                    myRef0.setValue(id);
-                }
-
+                String typeAct=type.getSelectedItem().toString();
                 String titolo=title.getText().toString();
-                DatabaseReference myRef2 = mDB.getReference("Utenti").child(username).child("Attività").child(category).child(id).child("Titolo");
-                myRef2.setValue(titolo);
-
                 String data=date.getText().toString();
-                DatabaseReference myRef3 = mDB.getReference("Utenti").child(username).child("Attività").child(category).child(id).child("Data");
-                myRef3.setValue(data);
-
                 String durata= duration.getText().toString();
-                DatabaseReference myRef4 = mDB.getReference("Utenti").child(username).child("Attività").child(category).child(id).child("Durata");
-                myRef4.setValue(durata);
+                m.addActivity(username, categoria, id, typeAct, durata, data, titolo);
+
+                AppManager.getInstance().addOnActivityList(new Activity(typeAct, titolo, data, durata, categoria), ctx);
 
                 finish();
             }
         });
-    }
-
-    public void initDatabase(){
-        mDB = FirebaseDatabase.getInstance();
     }
 
 }

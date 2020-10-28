@@ -27,7 +27,6 @@ public class Home extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     Toolbar toolbar;
 
-    Fragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +40,7 @@ public class Home extends AppCompatActivity {
         setSupportActionBar(toolbar);
         //getSupportActionBar().setLogo(R.mipmap.ic_logo);
     }
+    
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -77,7 +77,7 @@ public class Home extends AppCompatActivity {
                             openFragment(HomeFragment.newInstance("", ""));
                             return true;
                         case R.id.navigation_calendar:
-                            openFragment(CalendarFragment.newInstance("", ""));
+                            openFragment(CalendarFragment.newInstance());
                             return true;
                         case R.id.navigation_report:
                             openFragment(ReportFragment.newInstance("", ""));

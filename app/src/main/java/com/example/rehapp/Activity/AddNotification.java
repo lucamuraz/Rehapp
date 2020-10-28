@@ -1,10 +1,6 @@
 package com.example.rehapp.Activity;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -33,6 +29,8 @@ public class AddNotification extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.notification_new);
+
+        super.onCreate(savedInstanceState);
 
         data=findViewById(R.id.data_notifica);
         ora=findViewById(R.id.orario_notifica);
@@ -69,16 +67,11 @@ public class AddNotification extends AppCompatActivity {
 
                 // notificationId is a unique int for each notification that you must define
                 notificationManager.notify(notificationId, builder.build());
+                finish();
 
             }
         });
-
-        super.onCreate(savedInstanceState);
     }
-
-
-
-
 
 
 }

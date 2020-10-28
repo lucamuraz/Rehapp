@@ -1,92 +1,117 @@
 package com.example.rehapp.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CalendarView;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.rehapp.Activity.ActivityEdit;
 import com.example.rehapp.Activity.AddActivity;
-import com.example.rehapp.Activity.EnduranceActivity;
+import com.example.rehapp.Activity.Home;
+import com.example.rehapp.AppManager;
+import com.example.rehapp.Model.Activity;
 import com.example.rehapp.R;
-import com.example.rehapp.SaveSharedPreferences;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import io.github.yavski.fabspeeddial.FabSpeedDial;
-import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CalendarFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class CalendarFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class CalendarFragment extends Fragment implements ActivityAdapter.ItemClickListener{
+    private ActivityAdapter.ItemClickListener itemClickListener=this;
+    private List<Activity> activityList;
+    RecyclerView recyclerView;
+    CalendarView calendarView;
+    Context ctx;
+    String date1;
 
     public CalendarFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CalendarFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CalendarFragment newInstance(String param1, String param2) {
-        CalendarFragment fragment = new CalendarFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public static CalendarFragment newInstance() {
+        return new CalendarFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.ITALY);
+        Date dateobj = new Date();
+        String date1 =df.format(dateobj);
+        activityList= AppManager.getInstance().getActivityListForDate(date1);
+        if(activityList.size()==0){
+            activityList.add(new Activity("Clicca qui per iniziare una nuova attività", "", "", "", "Non hai ancora fatto attività!"));
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
         // Inflate the layout for this fragment
         final View rootView = inflater.inflate(R.layout.fragment_calendar, container, false);
-        FabSpeedDial fabSpeedDial = rootView.findViewById(R.id.fab_speed_dial);
-        fabSpeedDial.setMenuListener(new SimpleMenuListenerAdapter() {
+        ctx=rootView.getContext();
+        recyclerView=rootView.findViewById(R.id.list_cal);
+        calendarView=rootView.findViewById(R.id.calendarView);
+        calendarView.setFirstDayOfWeek(Calendar.MONDAY);
+
+        ActivityAdapter adapter = new ActivityAdapter(activityList, itemClickListener);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
+        recyclerView.hasFixedSize();
+
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
-            public boolean onMenuItemSelected(MenuItem menuItem) {
-                //TODO: Start some activity
-                if(menuItem.getItemId()==(R.id.activity_new)){
-                    SaveSharedPreferences.setActivityType(rootView.getContext(), "attività");
-                    Intent i= new Intent(rootView.getContext(), AddActivity.class);
-                    startActivity(i);
-                }else if(menuItem.getItemId()==(R.id.activity_new2)){
-                    SaveSharedPreferences.setActivityType(rootView.getContext(), "seduta");
-                    Intent i= new Intent(rootView.getContext(), AddActivity.class);
-                    startActivity(i);
+            public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
+                String date=i2+"/"+(i1+1)+"/"+i;
+                activityList= AppManager.getInstance().getActivityListForDate(date);
+                if(date.equals(date1) && activityList.size()==0){
+                    activityList.add(new Activity("Clicca qui per iniziare una nuova attività", "", "", "", "Non hai ancora fatto attività!"));
                 }
-                return false;
+                //Log.i("Info", "data is:"+activityList +"for date: "+date);
+                ActivityAdapter adapter = new ActivityAdapter(activityList, itemClickListener);
+                recyclerView.setAdapter(adapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
+                recyclerView.hasFixedSize();
+               // Log.i("Info", "data is:"+activityList);
             }
         });
+
+        FloatingActionButton floatingActionButton=rootView.findViewById(R.id.floatingActionButton3);
+        floatingActionButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent i= new Intent(rootView.getContext(), AddActivity.class);
+                startActivity(i);
+            }
+        } );
+
         return rootView;
+    }
+
+    @Override
+    public void onListItemClick(int clickedItemIndex) {
+        Activity act=activityList.get(clickedItemIndex);
+        if(act.getCategoria().equals("Seduta riabilitativa")||act.getCategoria().equals("Allenamento")){
+            AppManager.getInstance().setActivity(act);
+            Intent i=new Intent(ctx, ActivityEdit.class);
+            startActivity(i);
+        }else{
+            Intent i=new Intent(ctx, Home.class);
+            startActivity(i);
+        }
     }
 }

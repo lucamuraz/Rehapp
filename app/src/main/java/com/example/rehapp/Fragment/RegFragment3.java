@@ -31,7 +31,6 @@ import static com.example.rehapp.R.color.b;
 import static com.example.rehapp.R.color.colorBtn;
 import static com.example.rehapp.R.color.nero;
 
-
 public class RegFragment3 extends Fragment {
 
     @Override
@@ -46,7 +45,6 @@ public class RegFragment3 extends Fragment {
         final String username = SaveSharedPreferences.getUser(ctx);
         final String email = SaveSharedPreferences.getUserEmail(ctx);
         final String password = SaveSharedPreferences.getUserPassword(ctx);
-        final String edss;
 
         final CardView cardView = view.findViewById(R.id.card1); // card
         final TextView text = view.findViewById(R.id.minore); // testo
@@ -107,7 +105,7 @@ public class RegFragment3 extends Fragment {
                 Button annulla = new Button(getActivity());
                 annulla.setText(R.string.chiudi);
                 annulla.setBackgroundResource(R.drawable.cirlce_b);
-                annulla.setTextColor(getResources().getColor(nero));
+                annulla.setTextColor(getResources().getColor(R.color.nero));
                 annulla.setLayoutParams(new ConstraintLayout.LayoutParams(200,120));
                 annulla.setId(View.generateViewId());
                 l.addView(annulla);
@@ -133,7 +131,7 @@ public class RegFragment3 extends Fragment {
                         });
                         anim.start();
                         cardView.setCardBackgroundColor(getResources().getColor(b));
-                        text.setTextColor(getResources().getColor(nero));
+                        text.setTextColor(getResources().getColor(R.color.nero));
                         image.setColorFilter(getResources().getColor(colorBtn));
                     }
                 });
@@ -142,7 +140,7 @@ public class RegFragment3 extends Fragment {
                 avanti.setEnabled(false);
                 avanti.setText(R.string.avanti);
                 avanti.setBackgroundResource(R.drawable.cirlce_b);
-                avanti.setTextColor(getResources().getColor(nero));
+                avanti.setTextColor(getResources().getColor(R.color.nero));
                 avanti.setLayoutParams(new ConstraintLayout.LayoutParams(200, 120));
                 avanti.setId(View.generateViewId());
                 l.addView(avanti);
@@ -154,7 +152,7 @@ public class RegFragment3 extends Fragment {
                 avanti.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                         String edss = input.getText().toString();
+                        String edss = input.getText().toString();
                         m.register(nome,cognome,username,email,password,edss);
                         Intent i = new Intent(getActivity(), LogActivity.class);
                         startActivity(i); }

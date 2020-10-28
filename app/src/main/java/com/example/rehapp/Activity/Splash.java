@@ -7,11 +7,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.rehapp.AppManager;
+import com.example.rehapp.Model.Activity;
 import com.example.rehapp.R;
 import com.example.rehapp.SaveSharedPreferences;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Splash extends AppCompatActivity {
     private static final String CHANNEL_ID = "123";
@@ -22,6 +33,9 @@ public class Splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         final Context ctx=this;
         createNotificationChannel();
+        if(SaveSharedPreferences.getUserName(ctx).length()!=0){
+            readActivityFromFile(this);
+        }
         Thread timer=new Thread()
         {
             public void run() {
@@ -46,6 +60,35 @@ public class Splash extends AppCompatActivity {
             }
         };
         timer.start();
+    }
+
+    private void readActivityFromFile(Context context){
+        List<Activity> activityList=new ArrayList<>();
+
+        try {
+            InputStream inputStream = context.openFileInput("config.txt");
+
+            if ( inputStream != null ) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+
+                while ( (receiveString = bufferedReader.readLine()) != null ) {
+                    String[] str=receiveString.split(", ");
+                    Activity act= new Activity(str[2], str[0], str[4], str[1], str[3]);
+                    activityList.add(act);
+                }
+
+                inputStream.close();
+            }
+        }
+        catch (FileNotFoundException e) {
+            Log.e("login activity", "File not found: " + e.toString());
+        } catch (IOException e) {
+            Log.e("login activity", "Can not read file: " + e.toString());
+        }
+
+        AppManager.getInstance().setActivityList(activityList);
     }
 
     private void createNotificationChannel() {

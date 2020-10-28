@@ -6,6 +6,7 @@ import androidx.fragment.app.*;
 
 import android.os.Bundle;
 
+import com.example.rehapp.Fragment.RegFragment;
 import com.example.rehapp.R;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -17,7 +18,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.add(R.id.fragment,new Start());
+        //transaction.add(R.id.fragment,new Start());
+        transaction.add(R.id.fragment, new RegFragment());
         transaction.commit();
     }
 }

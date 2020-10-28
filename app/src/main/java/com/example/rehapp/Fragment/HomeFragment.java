@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.rehapp.Activity.EnduranceActivity;
-import com.example.rehapp.Activity.SettingsActivity;
 import com.example.rehapp.R;
 
 /**
