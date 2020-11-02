@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.rehapp.AppManager;
 import com.example.rehapp.Model.Activity;
+import com.example.rehapp.Model.Remainder;
 import com.example.rehapp.R;
 import com.example.rehapp.SaveSharedPreferences;
 
@@ -35,6 +36,7 @@ public class Splash extends AppCompatActivity {
         createNotificationChannel();
         if(SaveSharedPreferences.getUserName(ctx).length()!=0){
             readActivityFromFile(this);
+            readRemainderFromFile(this);
         }
         Thread timer=new Thread()
         {
@@ -89,6 +91,35 @@ public class Splash extends AppCompatActivity {
         }
 
         AppManager.getInstance().setActivityList(activityList);
+    }
+
+    private void readRemainderFromFile(Context context){
+        List<Remainder> remainderList=new ArrayList<>();
+
+        try {
+            InputStream inputStream = context.openFileInput("remainders.txt");
+
+            if ( inputStream != null ) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+
+                while ( (receiveString = bufferedReader.readLine()) != null ) {
+                    String[] str=receiveString.split(", ");
+                    Remainder remainder= new Remainder(str[0], str[1], str[2]);
+                    remainderList.add(remainder);
+                }
+
+                inputStream.close();
+            }
+        }
+        catch (FileNotFoundException e) {
+            Log.e("login activity", "File not found: " + e.toString());
+        } catch (IOException e) {
+            Log.e("login activity", "Can not read file: " + e.toString());
+        }
+
+        AppManager.getInstance().setRemainderList(remainderList);
     }
 
     private void createNotificationChannel() {

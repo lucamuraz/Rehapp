@@ -14,7 +14,6 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,13 +22,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.rehapp.Activity.LogActivity;
-import com.example.rehapp.DAO.Model;
+import com.example.rehapp.Model.DAO;
 import com.example.rehapp.R;
 import com.example.rehapp.SaveSharedPreferences;
 
 import static com.example.rehapp.R.color.b;
 import static com.example.rehapp.R.color.colorBtn;
-import static com.example.rehapp.R.color.nero;
 
 public class RegFragment3 extends Fragment {
 
@@ -38,7 +36,7 @@ public class RegFragment3 extends Fragment {
                              Bundle savedInstanceState) {
 
         final View view = inflater.inflate(R.layout.fragment_reg3, container, false);
-        final Model m = new Model();
+        final DAO m = new DAO();
         final Context ctx = this.getContext();
         final String nome = SaveSharedPreferences.getUserName(ctx);
         final String cognome = SaveSharedPreferences.getUserSurname(ctx);

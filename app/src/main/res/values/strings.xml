@@ -94,4 +94,6 @@
     <string name="credenziali_per_accedere">Credenziali per accedere</string>
     <string name="qual_il_tuo_edss">Qual\'è il tuo EDSS</string>
     <string name="categoria_attività">Categoria attività</string>
+    <string name="nessun_promemoria_impostato">Nessun promemoria impostato</string>
+    <string name="no_activity">Nessuna attività registrata</string>
 </resources>

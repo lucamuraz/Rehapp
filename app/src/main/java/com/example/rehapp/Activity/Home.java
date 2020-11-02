@@ -38,7 +38,6 @@ public class Home extends AppCompatActivity {
         openFragment(HomeFragment.newInstance("", ""));
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setLogo(R.mipmap.ic_logo);
     }
     
 
@@ -80,10 +79,10 @@ public class Home extends AppCompatActivity {
                             openFragment(CalendarFragment.newInstance());
                             return true;
                         case R.id.navigation_report:
-                            openFragment(ReportFragment.newInstance("", ""));
+                            openFragment(ReportFragment.newInstance());
                             return true;
                         case R.id.navigation_notify:
-                            openFragment(NotifyFragment.newInstance("", ""));
+                            openFragment(NotifyFragment.newInstance());
                             return true;
                     }
                     return false;

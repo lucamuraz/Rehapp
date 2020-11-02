@@ -6,7 +6,7 @@
     android:padding="6dip" >
 
     <ImageView
-        android:id="@+id/activity_icon"
+        android:id="@+id/reportTime_icon"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_alignParentTop="true"
@@ -24,12 +24,12 @@
         android:layout_height="26dip"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_toRightOf="@id/activity_icon"
+        android:layout_toRightOf="@id/reportTime_icon"
         android:ellipsize="marquee"
         android:text="Teacher"
         android:textSize="12sp"
         android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@id/activity_icon"
+        android:layout_toEndOf="@id/reportTime_icon"
         android:singleLine="true" />
 
     <TextView
@@ -40,11 +40,11 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_alignWithParentIfMissing="true"
-        android:layout_toRightOf="@id/activity_icon"
+        android:layout_toRightOf="@id/reportTime_icon"
         android:gravity="center_vertical"
         android:text="Course"
         android:textSize="16sp"
-        android:layout_toEndOf="@id/activity_icon"
+        android:layout_toEndOf="@id/reportTime_icon"
         android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

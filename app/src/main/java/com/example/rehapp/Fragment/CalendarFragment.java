@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.rehapp.Activity.ActivityEdit;
 import com.example.rehapp.Activity.AddActivity;
 import com.example.rehapp.Activity.Home;
+import com.example.rehapp.Adapter.ActivityAdapter;
 import com.example.rehapp.AppManager;
 import com.example.rehapp.Model.Activity;
 import com.example.rehapp.R;
@@ -35,7 +36,6 @@ public class CalendarFragment extends Fragment implements ActivityAdapter.ItemCl
     RecyclerView recyclerView;
     CalendarView calendarView;
     Context ctx;
-    String date1;
 
     public CalendarFragment() {
         // Required empty public constructor
@@ -76,7 +76,15 @@ public class CalendarFragment extends Fragment implements ActivityAdapter.ItemCl
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
-                String date=i2+"/"+(i1+1)+"/"+i;
+                String date;
+                if(i2<10){
+                    date="0"+i2+"/"+(i1+1)+"/"+i;
+                }else{
+                    date=i2+"/"+(i1+1)+"/"+i;
+                }
+                DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.ITALY);
+                Date dateobj = new Date();
+                String date1 =df.format(dateobj);
                 activityList= AppManager.getInstance().getActivityListForDate(date);
                 if(date.equals(date1) && activityList.size()==0){
                     activityList.add(new Activity("Clicca qui per iniziare una nuova attività", "", "", "", "Non hai ancora fatto attività!"));
@@ -112,6 +120,7 @@ public class CalendarFragment extends Fragment implements ActivityAdapter.ItemCl
         }else{
             Intent i=new Intent(ctx, Home.class);
             startActivity(i);
+            getActivity().finish();
         }
     }
 }

@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.rehapp.AppManager;
-import com.example.rehapp.DAO.Model;
+import com.example.rehapp.Model.DAO;
 import com.example.rehapp.Model.Activity;
 import com.example.rehapp.R;
 import com.example.rehapp.SaveSharedPreferences;
@@ -26,7 +26,7 @@ public class AddActivity extends AppCompatActivity {
 
     Context ctx=this;
 
-    final Model m = new Model();
+    final DAO m = new DAO();
 
     Spinner type;
     Spinner category;

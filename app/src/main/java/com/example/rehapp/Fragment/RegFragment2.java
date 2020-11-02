@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.rehapp.DAO.Model;
+import com.example.rehapp.Model.DAO;
 import com.example.rehapp.R;
 import com.example.rehapp.SaveSharedPreferences;
 
@@ -26,7 +26,7 @@ public class RegFragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              final Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_reg2, container, false);
-        final Model m = new Model();
+        final DAO m = new DAO();
 
 
         final Button prosegui = view.findViewById(R.id.Prosegui);
