@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="133dp"
+    android:padding="6dip"
+    android:background="#F0F0F1"
+    android:layout_margin="10dp"
+    android:elevation="5dp">
+
+    <ImageView
+        android:id="@+id/reportTime_icon"
+        android:layout_width="35dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="6dip"
+        android:layout_marginBottom="2dp"
+        android:layout_marginStart="14dp"
+        android:contentDescription="@string/todo"
+        app:srcCompat="@drawable/ic_activity_foreground"/>
+
+    <ImageView
+        android:id="@+id/reportNum_icon"
+        android:layout_width="35dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="46dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="45dp"
+        android:contentDescription="@string/todo"
+        app:srcCompat="@drawable/ic_activity_foreground"/>
+
+    <TextView
+        android:id="@+id/activity_secondLine"
+        android:layout_width="fill_parent"
+        android:layout_height="26dip"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="60dp"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:text="Teacher"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/activity_secondLine2"
+        android:layout_width="fill_parent"
+        android:layout_height="26dip"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="43dp"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:text="Teacher"
+        android:layout_marginStart="60dp"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/activity_firstLine"
+        android:layout_width="381dp"
+        android:layout_height="53dp"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_above="@id/activity_secondLine2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="6dp"
+        android:gravity="center_vertical"
+        android:text="Course"
+        android:textSize="20sp" />
+
+</RelativeLayout>
+
