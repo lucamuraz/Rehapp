@@ -44,7 +44,7 @@ public class RemainderAdapter extends
         textView1.setText(remainder.getInfo());
         ImageView imageView = holder.remainder_icon;
         //imageView.setImageResource(R.drawable.ic_baseline_notifications_active_24);
-        imageView.setImageResource(R.drawable.ic_bell_foreground);
+        imageView.setImageResource(R.drawable.ic_bell1_foreground);
 
     }
 

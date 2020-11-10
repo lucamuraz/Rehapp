@@ -6,6 +6,7 @@ import android.util.Log;
 import com.example.rehapp.Model.Activity;
 import com.example.rehapp.Model.MonthReport;
 import com.example.rehapp.Model.Remainder;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -20,6 +21,7 @@ public class AppManager {
     private List<Remainder> remainderList;
     private String lastId;
     private Activity activity;
+    BottomNavigationView bottomNavigationView;
 
     public static AppManager getInstance() {
         if (singleInstance == null) {
@@ -37,6 +39,12 @@ public class AppManager {
     public void setActivity(Activity activity){
         this.activity=activity;
         Log.i("Info", "Attività: "+activity);
+    }
+
+    public String getTotalAct(){
+        String res="";
+        res+=activityList.size();
+        return res;
     }
 
     public Activity getActivity(){ return this.activity; }
@@ -59,6 +67,14 @@ public class AppManager {
     public void addOnRemainderList(Remainder remainder, Context context){
         remainderList.add(remainder);
         writeRemaindersToFile(remainderList, context);
+    }
+
+    public BottomNavigationView getBottomNavigationView() {
+        return bottomNavigationView;
+    }
+
+    public void setBottomNavigationView(BottomNavigationView bottomNavigationView) {
+        this.bottomNavigationView = bottomNavigationView;
     }
 
     public String getLastId(){ return lastId; }
@@ -190,5 +206,15 @@ public class AppManager {
         int hour=Integer.parseInt(hours);
         time=min+(hour*60);
         return time;
+    }
+
+    public String getTotTime(){
+        String res="";
+        int time=0;
+        for (Activity act : activityList) {
+            String tm=act.getDurata();
+            time+=getTime(tm);
+        }
+        return res+time;
     }
 }

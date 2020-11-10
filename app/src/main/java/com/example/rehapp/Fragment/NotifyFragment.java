@@ -27,7 +27,7 @@ import java.util.List;
 
 public class NotifyFragment extends Fragment {
 
-    List<Remainder> remainderList = new ArrayList<Remainder>();
+    List<Remainder> remainderList = new ArrayList<>();
     RecyclerView recyclerView;
     final Context ctx = getContext();
 
@@ -78,4 +78,6 @@ public class NotifyFragment extends Fragment {
 
         return rootView;
     }
+
+
 }

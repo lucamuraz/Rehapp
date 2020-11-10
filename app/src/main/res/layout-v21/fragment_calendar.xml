@@ -10,7 +10,9 @@
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="55dp" />
+        android:background="@color/b"
+        android:layout_margin="5dp"
+        android:elevation="5dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton3"
@@ -22,7 +24,7 @@
         android:layout_marginBottom="80dp"
         android:clickable="true"
         android:focusable="true"
-        app:backgroundTint="@color/colorBtn"
+        app:backgroundTint="@color/colorPrimary"
         app:srcCompat="@drawable/fab_add_clear_selector" />
 
     <View
@@ -30,15 +32,14 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginHorizontal="5dp"
-        android:layout_marginTop="395dp"
-        android:layout_marginBottom="398dp"
+        android:layout_marginTop="355dp"
         android:background="?android:attr/listDivider" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_cal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="400dp" />
+        android:layout_marginTop="360dp" />
 
 
 </FrameLayout>

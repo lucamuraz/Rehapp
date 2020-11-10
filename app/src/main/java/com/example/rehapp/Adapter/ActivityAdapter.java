@@ -48,7 +48,7 @@ public class ActivityAdapter extends
         }else if(activity.getCategoria().equals("Seduta riabilitativa")){
             imageView.setImageResource(R.drawable.ic_physio_foreground);
         }else{
-            imageView.setImageResource(R.drawable.ic_bell_foreground);
+            imageView.setImageResource(R.drawable.ic_alert_foreground);
             textView.setText(activity.getCategoria());
             textView1.setText(activity.getTipologia());
         }

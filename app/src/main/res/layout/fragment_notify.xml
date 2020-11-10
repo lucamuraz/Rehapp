@@ -7,10 +7,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="55dp">
+        android:layout_height="wrap_content">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="10dp"
             android:id="@+id/remainder_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
         android:layout_marginBottom="80dp"
         android:clickable="true"
         android:focusable="true"
-        app:backgroundTint="@color/colorBtn"
+        app:backgroundTint="@color/colorPrimary"
         app:srcCompat="@drawable/fab_add_clear_selector" />
 
 </FrameLayout>

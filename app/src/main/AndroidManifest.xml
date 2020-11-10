@@ -5,36 +5,52 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launch_round"
+        android:icon="@mipmap/ic_logo1_round"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launch_round"
+        android:roundIcon="@mipmap/ic_logo1_round"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:ignore="RtlEnabled">
-        <activity android:name=".Activity.SettingsActivity">
+        <activity android:name=".Activity.SettingsActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.Home" />
         </activity>
-        <activity android:name=".Activity.EnduranceActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Activity.Home" />
+        <activity android:name=".Activity.EnduranceActivityH"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Activity.Home" />
-        <activity android:name=".Activity.RegisterActivity" />
-        <activity android:name=".Activity.LogActivity" />
-        <activity android:name=".Activity.Splash">
+        <activity android:name=".Activity.EnduranceActivityL"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Activity.StrengthActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Activity.Home"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Activity.RegisterActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.LogActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.Splash"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.MainActivity" />
-        <activity android:name=".Activity.AddActivity" />
-        <activity android:name=".Activity.AddNotification"/>
-        <activity android:name=".Activity.ActivityEdit"/>
+        <activity android:name=".Activity.MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.AddActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.AddNotification"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.ActivityEdit"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.ExplainActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

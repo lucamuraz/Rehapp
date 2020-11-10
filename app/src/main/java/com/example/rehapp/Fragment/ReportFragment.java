@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.rehapp.Adapter.MonthReportAdapter;
 import com.example.rehapp.AppManager;
@@ -44,6 +45,8 @@ public class ReportFragment extends Fragment {
         final View rootView=inflater.inflate(R.layout.fragment_report, container, false);
         monthReportList = AppManager.getInstance().getMonthReportList(); // preno la lista piena
         if(monthReportList != null){
+            TextView text = rootView.findViewById(R.id.testo1);
+            text.setVisibility(View.INVISIBLE);
             MonthReportAdapter adapter = new MonthReportAdapter(monthReportList); // la visulizzo con l'adpter
             recyclerView = rootView.findViewById(R.id.report_list);
             recyclerView.setHasFixedSize(true);

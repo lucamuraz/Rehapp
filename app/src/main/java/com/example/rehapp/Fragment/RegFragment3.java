@@ -28,6 +28,7 @@ import com.example.rehapp.SaveSharedPreferences;
 
 import static com.example.rehapp.R.color.b;
 import static com.example.rehapp.R.color.colorBtn;
+import static com.example.rehapp.R.color.colorPrimary;
 
 public class RegFragment3 extends Fragment {
 
@@ -54,7 +55,7 @@ public class RegFragment3 extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
             @Override
             public void onClick(View v) {
-                cardView.setCardBackgroundColor(getResources().getColor(colorBtn));
+                cardView.setCardBackgroundColor(getResources().getColor(colorPrimary));
                 cardView.setMaxCardElevation(10);
                 cardView.setCardElevation(10);
                 text.setTextColor(getResources().getColor(b));

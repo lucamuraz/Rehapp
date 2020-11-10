@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.rehapp.AppManager;
 import com.example.rehapp.Fragment.CalendarFragment;
 import com.example.rehapp.Fragment.HomeFragment;
 import com.example.rehapp.Fragment.NotifyFragment;
@@ -33,9 +34,10 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         bottomNavigationView = findViewById(R.id.navigation);
+        AppManager.getInstance().setBottomNavigationView(bottomNavigationView);
         bottomNavigationView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_AUTO);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
-        openFragment(HomeFragment.newInstance("", ""));
+        openFragment(HomeFragment.newInstance());
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
@@ -73,7 +75,7 @@ public class Home extends AppCompatActivity {
                 @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     switch (item.getItemId()) {
                         case R.id.navigation_home:
-                            openFragment(HomeFragment.newInstance("", ""));
+                            openFragment(HomeFragment.newInstance());
                             return true;
                         case R.id.navigation_calendar:
                             openFragment(CalendarFragment.newInstance());
