@@ -55,6 +55,7 @@ public class SettingsActivity extends AppCompatActivity {
                     return false;
                 }
             });
+
             Objects.requireNonNull(getPreferenceScreen().findPreference("Privacy policy")).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener(){
 
                 @Override
@@ -85,9 +86,18 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             });
 
-
-
-
+            Objects.requireNonNull(getPreferenceScreen().findPreference("Contatti")).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType("plain/text");
+                    intent.putExtra(Intent.EXTRA_EMAIL, new String[] { "rehapp.unito@gmail.com" });
+                    intent.putExtra(Intent.EXTRA_SUBJECT, "");
+                    intent.putExtra(Intent.EXTRA_TEXT, "");
+                    startActivity(Intent.createChooser(intent, ""));
+                    return false;
+                }
+            });
         }
     }
 }
