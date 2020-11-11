@@ -126,4 +126,13 @@
     <string name="endu6h">~  Arm walk simulato</string>
     <string name="saveText">Salva l\'allenamento effettuato</string>
     <string name="deleteText">Elimina l\'allenamento effettuato</string>
+    <string name="inizia">INIZIA</string>
+    <string name="_10">10</string>
+    <string name="tempo_totale">Tempo totale</string>
+    <string name="pronto_ad_inziare">Pronto ad inziare</string>
+    <string name="allenamento_di_resistenza">ALLENAMENTO DI RESISTENZA</string>
+    <string name="allenamento_di_forza">ALLENAMENTO DI FORZA</string>
+    <string name="mmmm">mmmm</string>
+    <string name="_1000">1000</string>
+    <string name="i_tuoi_totali">I TUOI TOTALI</string>
 </resources>

@@ -56,7 +56,7 @@ public class TrainingMaker {
     }
 
     public static List<Exercize> pickNRandom(List<Exercize> lst, int n) {
-        List<Exercize> copy = new LinkedList<Exercize>(lst);
+        List<Exercize> copy = new LinkedList<>(lst);
         Collections.shuffle(copy);
         return copy.subList(0, n);
     }

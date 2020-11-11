@@ -28,6 +28,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 
 public class CalendarFragment extends Fragment implements ActivityAdapter.ItemClickListener{
@@ -120,7 +121,7 @@ public class CalendarFragment extends Fragment implements ActivityAdapter.ItemCl
         }else{
             Intent i=new Intent(ctx, Home.class);
             startActivity(i);
-            getActivity().finish();
+            requireActivity().finish();
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.rehapp;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 
@@ -16,12 +17,14 @@ import java.util.Iterator;
 import java.util.List;
 
 public class AppManager {
+    @SuppressLint("StaticFieldLeak")
     private static AppManager singleInstance;
     private List<Activity> activityList;
     private List<Remainder> remainderList;
     private String lastId;
     private Activity activity;
     BottomNavigationView bottomNavigationView;
+    private  Context ctx;
 
     public static AppManager getInstance() {
         if (singleInstance == null) {
@@ -46,6 +49,10 @@ public class AppManager {
         res+=activityList.size();
         return res;
     }
+
+    public Context getCtx(){ return ctx; }
+
+    public void setCtx(Context ctx){ this.ctx=ctx; }
 
     public Activity getActivity(){ return this.activity; }
 

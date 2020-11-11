@@ -4,11 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.example.rehapp.Model.Activity;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class SaveSharedPreferences{
 
     static final String PREF_USER_NAME= "name";
@@ -17,8 +12,6 @@ public class SaveSharedPreferences{
     static final String PREF_USER_PSW= "password";
     static final String PREF_USER_EDSS= "EDSS";
     static final String PREF_USER= "user";
-
-    static final String ACTIVITY_TYPE="type";
 
     static SharedPreferences getSharedPreferences(Context ctx) {
         return PreferenceManager.getDefaultSharedPreferences(ctx);
@@ -54,12 +47,6 @@ public class SaveSharedPreferences{
         editor.apply();
     }
 
-    public static void setActivityType(Context ctx, String type) {
-        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
-        editor.putString(ACTIVITY_TYPE, type);
-        editor.apply();
-    }
-
     public static void setUser(Context ctx, String user) {
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
         editor.putString(PREF_USER, user);
@@ -88,10 +75,6 @@ public class SaveSharedPreferences{
 
     public static String getUserEdss(Context ctx) {
         return getSharedPreferences(ctx).getString(PREF_USER_EDSS, "");
-    }
-
-    public static String getActivityType(Context ctx) {
-        return getSharedPreferences(ctx).getString(ACTIVITY_TYPE, "");
     }
 
     public static void clearData(Context ctx) {

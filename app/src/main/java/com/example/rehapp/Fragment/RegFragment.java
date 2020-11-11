@@ -1,16 +1,17 @@
 package com.example.rehapp.Fragment;
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import com.example.rehapp.SaveSharedPreferences;
-import com.example.rehapp.R;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.example.rehapp.R;
+import com.example.rehapp.SaveSharedPreferences;
 
 
 public class RegFragment extends Fragment {
@@ -27,12 +28,12 @@ public class RegFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //TODO interagire con il database
-                nome = getActivity().findViewById(R.id.Nome);
-                cognome = getActivity().findViewById(R.id.Cognome);
+                nome = requireActivity().findViewById(R.id.Nome);
+                cognome = requireActivity().findViewById(R.id.Cognome);
                 String n = nome.getText().toString().replace("/[\u2190-\u21FF]|[\u2600-\u26FF]|[\u2700-\u27BF]|[\u3000-\u303F]|[\u1F300-\u1F64F]|[\u1F680-\u1F6FF]/g", "");
                 String c = cognome.getText().toString();
                 //TODO passare al secondo fragment
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
                 RegFragment2 fragment2 = new RegFragment2();
                 transaction.replace(R.id.fragment, fragment2);
                 transaction.commit();

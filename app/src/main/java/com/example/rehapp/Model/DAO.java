@@ -10,8 +10,6 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.example.rehapp.Activity.Home;
 import com.example.rehapp.AppManager;
-import com.example.rehapp.Model.Activity;
-import com.example.rehapp.Model.Remainder;
 import com.example.rehapp.SaveSharedPreferences;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -159,19 +157,18 @@ public class DAO {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 map =(Map<String, Object>) snapshot.getValue();
+                assert map != null;
                 Log.i(TAG,map.toString());
                 if(map != null){
-                    String titolo = "";
+                    String titolo;
                     String data = "";
                     String ora = "";
 
                     for (Map.Entry<String, Object> key : map.entrySet()) {
                         Map<String, Object> map1 = ((Map<String, Object>) key.getValue()); // qui
                         titolo =key.getKey();
-                        Iterator<Map.Entry<String, Object>> it = map1.entrySet().iterator();
-                        while(it.hasNext()){
-                            Map.Entry<String, Object> value = it.next();
-                            switch (value.getKey()){
+                        for (Map.Entry<String, Object> value : map1.entrySet()) {
+                            switch (value.getKey()) {
                                 case "Data":
                                     data = value.getValue().toString();
                                     break;
@@ -291,6 +288,16 @@ public class DAO {
         SaveSharedPreferences.setUserPassword(ctx, psw);
         SaveSharedPreferences.setUserEdss(ctx, edss);
         SaveSharedPreferences.setUser(ctx, username);
+    }
+
+    public void saveNewEDSS(String EDSS, String username){
+        DatabaseReference myReF4 = mDB.getReference("Utenti").child(username).child("EDSS");
+        myReF4.setValue(EDSS);
+    }
+
+    public void saveNewPassword(String password, String username){
+        DatabaseReference myRef3 = mDB.getReference("Utenti").child(username).child("Password");
+        myRef3.setValue(password);
     }
 
 }

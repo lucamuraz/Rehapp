@@ -1,24 +1,22 @@
 package com.example.rehapp.Fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.rehapp.Activity.AddNotification;
 import com.example.rehapp.Adapter.RemainderAdapter;
 import com.example.rehapp.AppManager;
-import com.example.rehapp.R;
 import com.example.rehapp.Model.Remainder;
+import com.example.rehapp.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -29,7 +27,6 @@ public class NotifyFragment extends Fragment {
 
     List<Remainder> remainderList = new ArrayList<>();
     RecyclerView recyclerView;
-    final Context ctx = getContext();
 
     public NotifyFragment() {
         // Required empty public constructor
@@ -37,8 +34,7 @@ public class NotifyFragment extends Fragment {
 
 
     public static NotifyFragment newInstance() {
-        NotifyFragment fragment = new NotifyFragment();;
-        return fragment;
+        return new NotifyFragment();
     }
 
     @Override

@@ -76,9 +76,9 @@ public class ActivityAdapter extends
             // to access the context from any ViewHolder instance.
             super(itemView);
             view=itemView;
-            titolo = (TextView) itemView.findViewById(R.id.activity_firstLine);
-            descrizione = (TextView) itemView.findViewById(R.id.activity_secondLine);
-            activity_icon = (ImageView) itemView.findViewById(R.id.reportTime_icon);
+            titolo = itemView.findViewById(R.id.activity_firstLine);
+            descrizione = itemView.findViewById(R.id.activity_secondLine);
+            activity_icon = itemView.findViewById(R.id.reportTime_icon);
             itemView.setOnClickListener(this);
         }
 
@@ -86,7 +86,6 @@ public class ActivityAdapter extends
         public void onClick(View v){
             int clickedPosition = getAdapterPosition();
             onClickListener.onListItemClick(clickedPosition);
-            Activity clickedDataItem=activityList.get(clickedPosition);
         }
     }
 

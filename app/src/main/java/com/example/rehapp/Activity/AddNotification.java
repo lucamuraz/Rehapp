@@ -19,10 +19,11 @@ import com.example.rehapp.R;
 import com.example.rehapp.Model.Remainder;
 import com.example.rehapp.SaveSharedPreferences;
 
+import java.util.Objects;
+
 public class AddNotification extends AppCompatActivity {
 
     private static final String CHANNEL_ID = "123";
-    private static final String TAG = "info";
     Context ctx=this;
     Button button;
     Toolbar toolbar;
@@ -42,7 +43,7 @@ public class AddNotification extends AppCompatActivity {
 
         toolbar=findViewById(R.id.toolbar4);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Aggiungi notifica");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Aggiungi notifica");
         toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left_24px);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

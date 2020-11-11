@@ -19,6 +19,8 @@ import com.example.rehapp.R;
 import com.example.rehapp.SaveSharedPreferences;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.Objects;
+
 
 public class HomeFragment extends Fragment {
 
@@ -26,8 +28,7 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
     public static HomeFragment newInstance() {
-        HomeFragment fragment = new HomeFragment();
-        return fragment;
+        return new HomeFragment();
     }
 
     @Override
@@ -50,11 +51,11 @@ public class HomeFragment extends Fragment {
                 if(edss<6.5){
                     Intent i = new Intent(rootView.getContext(), EnduranceActivityL.class);
                     startActivity(i);
-                    getActivity().finish();
+                    //getActivity().finish();
                 }else{
                     Intent i = new Intent(rootView.getContext(), EnduranceActivityH.class);
                     startActivity(i);
-                    getActivity().finish();
+                    //getActivity().finish();
                 }
             }
         });
@@ -65,7 +66,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 Intent i = new Intent(rootView.getContext(), StrengthActivity.class);
                 startActivity(i);
-                getActivity().finish();
+                //getActivity().finish();
             }
         });
 
@@ -82,7 +83,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 bottomNavigationView.setSelectedItemId(R.id.navigation_report);
                 Fragment fragment=new ReportFragment();
-                getActivity().getSupportFragmentManager().beginTransaction()
+                requireActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container, fragment)
                         .addToBackStack(null)
                         .commit();
@@ -95,7 +96,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 bottomNavigationView.setSelectedItemId(R.id.navigation_calendar);
                 Fragment fragment=new CalendarFragment();
-                getActivity().getSupportFragmentManager().beginTransaction()
+                requireActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container, fragment)
                         .addToBackStack(null)
                         .commit();

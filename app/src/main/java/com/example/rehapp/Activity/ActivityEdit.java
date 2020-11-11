@@ -11,6 +11,8 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.rehapp.AppManager;
 import com.example.rehapp.R;
 
+import java.util.Objects;
+
 public class ActivityEdit extends AppCompatActivity {
 
     Toolbar toolbar;
@@ -28,7 +30,7 @@ public class ActivityEdit extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar5);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Dettagli attività");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Dettagli attività");
         toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left_24px);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

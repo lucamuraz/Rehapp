@@ -1,5 +1,7 @@
 package com.example.rehapp.Model;
 
+import androidx.annotation.NonNull;
+
 public class Remainder {
 
     private String title;
@@ -28,17 +30,11 @@ public class Remainder {
     }
 
 
-    public String getHour() {
-        return hour;
-    }
-    public void setHour(String hour) {
-        this.hour = hour;
-    }
-
     public String getInfo(){
         return date+" - "+hour;
     }
 
+    @NonNull
     public String toString(){
         return title+", "+date+", "+hour;
     }

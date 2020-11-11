@@ -21,6 +21,7 @@ import com.example.rehapp.SaveSharedPreferences;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class AddActivity extends AppCompatActivity {
 
@@ -43,7 +44,7 @@ public class AddActivity extends AppCompatActivity {
 
         toolbar=findViewById(R.id.toolbar5);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Aggiungi attività");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Aggiungi attività");
         toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left_24px);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +66,7 @@ public class AddActivity extends AppCompatActivity {
         categoryElmts=new ArrayList<>();
         categoryElmts.add("Seduta riabilitativa");
         categoryElmts.add("Allenamento");
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_spinner_item, categoryElmts);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         category.setAdapter(adapter);
@@ -81,7 +82,7 @@ public class AddActivity extends AppCompatActivity {
                     typeElmts.add("Resistenza");
                     typeElmts.add("Forza");
                 }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(
                         ctx, android.R.layout.simple_spinner_item, typeElmts);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 type.setAdapter(adapter);
@@ -100,7 +101,7 @@ public class AddActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String username=SaveSharedPreferences.getUser(ctx);
                 String categoria=category.getSelectedItem().toString();
-                String id="";
+                String id;
                 id=AppManager.getInstance().getLastId();
                 AppManager.getInstance().setLastId("00"+id.substring(2));
 

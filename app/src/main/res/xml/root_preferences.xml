@@ -1,20 +1,26 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory app:title="@string/info_personali">
 
-        <EditTextPreference
+        <Preference
             app:key="user"
             app:title="@string/username"
             app:useSimpleSummaryProvider="true" />
 
-        <EditTextPreference
+        <Preference
             app:key="name"
             app:title="@string/signature_name"
             app:useSimpleSummaryProvider="true" />
 
-        <EditTextPreference
+        <Preference
             app:key="surname"
             app:title="@string/signature_surname"
+            app:useSimpleSummaryProvider="true" />
+
+        <Preference
+            app:key="email"
+            app:title="@string/email"
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
@@ -23,34 +29,28 @@
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
-            app:key="email"
-            app:title="@string/email"
-            app:useSimpleSummaryProvider="true" />
-
-        <EditTextPreference
             app:key="password"
             app:title="@string/password"
-            app:useSimpleSummaryProvider="true" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory app:title="@string/setup_app">
-
-        <SwitchPreferenceCompat
-            app:key="sync"
-            app:title="@string/notifications" />
-
-        <SeekBarPreference
-            app:key="dimensione testo"
-            app:title="@string/dimensione_testo"/>
+            app:summary="********"
+            android:inputType="textPassword"/>
 
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/info_app">
 
+        <Preference app:key="Contatti"
+            app:title="Contatti"
+            app:summary="rehapp.unito@gmail.com"/>
+
         <Preference app:key="Informazioni"
             app:title="@string/version"
             app:summary="0.0.1"/>
+
+        <Preference app:key="Licenses"
+            app:title="Licenze e copiright" />
+
+        <Preference app:key="Privacy policy"
+            app:title="Termini e condizioni" />
 
     </PreferenceCategory>
 

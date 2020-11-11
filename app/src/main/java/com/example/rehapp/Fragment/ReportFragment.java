@@ -24,15 +24,13 @@ public class ReportFragment extends Fragment {
 
     List<MonthReport> monthReportList= new ArrayList<>();
     RecyclerView recyclerView;
-    final Context ctx=getContext();
 
     public ReportFragment() {
         // Required empty public constructor
     }
 
     public static ReportFragment newInstance() {
-        ReportFragment fragment = new ReportFragment();
-        return fragment;
+        return new ReportFragment();
     }
 
     @Override

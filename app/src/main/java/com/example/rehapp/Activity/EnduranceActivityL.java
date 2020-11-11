@@ -31,6 +31,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class EnduranceActivityL extends AppCompatActivity {
 
@@ -41,7 +42,6 @@ public class EnduranceActivityL extends AppCompatActivity {
 
     Context ctx=this;
 
-    private Toolbar toolbar;
     private Button buttonStart;
     private TextView timerTextView;
     private CountDownTimer countDownTimer;
@@ -93,7 +93,7 @@ public class EnduranceActivityL extends AppCompatActivity {
 
         exercizeList= TrainingMaker.getInstance().getNewExercizeList("E", 5);
 
-        toolbar = findViewById(R.id.toolbar31);
+        Toolbar toolbar = findViewById(R.id.toolbar31);
         buttonStart = findViewById(R.id.buttonStart1);
         buttonPauseResume = findViewById(R.id.buttonPauseResume1);
         buttonStop = findViewById(R.id.buttonStop1);
@@ -122,20 +122,9 @@ public class EnduranceActivityL extends AppCompatActivity {
         image=findViewById(R.id.exPicL);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Allenamento di resistenza");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Allenamento di resistenza");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left_24px);
-
-
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(ctx, Home.class);
-                startActivity(i);
-                finish();
-            }
-        });
 
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -226,6 +215,8 @@ public class EnduranceActivityL extends AppCompatActivity {
                     desc.setVisibility(View.VISIBLE);
                     info1.setVisibility(View.VISIBLE);
                     image.setVisibility(View.VISIBLE);
+                    buttonPauseResume.setVisibility(View.VISIBLE);
+                    buttonStop.setVisibility(View.VISIBLE);
                 }else{
                     Intent i=new Intent(ctx, ExplainActivity.class);
                     startActivity(i);
@@ -461,6 +452,8 @@ public class EnduranceActivityL extends AppCompatActivity {
         cardView.setVisibility(View.VISIBLE);
         buttonSave.setVisibility(View.VISIBLE);
         buttonDelete.setVisibility(View.VISIBLE);
+        buttonPauseResume.setVisibility(View.INVISIBLE);
+        buttonStop.setVisibility(View.INVISIBLE);
     }
 
     private void saveActivity(){
@@ -479,7 +472,7 @@ public class EnduranceActivityL extends AppCompatActivity {
         String username= SaveSharedPreferences.getUser(ctx);
         String categoria="Allenamento";
 
-        String id="";
+        String id;
         id= AppManager.getInstance().getLastId();
         AppManager.getInstance().setLastId("00"+id.substring(2));
 

@@ -15,10 +15,10 @@ import com.example.rehapp.Model.TrainingMaker;
 import com.example.rehapp.R;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ExplainActivity extends AppCompatActivity {
 
-    private List<TrainingMaker.Exercize> exrecizeList;
     RecyclerView recyclerView;
     Context ctx=this;
 
@@ -29,7 +29,7 @@ public class ExplainActivity extends AppCompatActivity {
 
         Toolbar toolbar=findViewById(R.id.toolbar8);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Spiegazione attività");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Spiegazione attività");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left_24px);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -40,7 +40,7 @@ public class ExplainActivity extends AppCompatActivity {
         });
 
         recyclerView=findViewById(R.id.exList);
-        exrecizeList=TrainingMaker.getInstance().getGeneratedExercizeList();
+        List<TrainingMaker.Exercize> exrecizeList = TrainingMaker.getInstance().getGeneratedExercizeList();
 
         if(exrecizeList != null){
             ExercizeAdapter adapter = new ExercizeAdapter(exrecizeList); // la visulizzo con l'adpter

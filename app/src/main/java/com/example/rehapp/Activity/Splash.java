@@ -73,7 +73,7 @@ public class Splash extends AppCompatActivity {
             if ( inputStream != null ) {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                String receiveString = "";
+                String receiveString;
 
                 while ( (receiveString = bufferedReader.readLine()) != null ) {
                     String[] str=receiveString.split(", ");
@@ -102,7 +102,7 @@ public class Splash extends AppCompatActivity {
             if ( inputStream != null ) {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                String receiveString = "";
+                String receiveString;
 
                 while ( (receiveString = bufferedReader.readLine()) != null ) {
                     String[] str=receiveString.split(", ");

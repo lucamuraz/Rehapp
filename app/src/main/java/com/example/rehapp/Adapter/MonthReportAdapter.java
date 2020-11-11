@@ -67,11 +67,11 @@ public class MonthReportAdapter extends
         public ViewHolder(View v) {
             super(v);
             view=v;
-            data = (TextView) v.findViewById(R.id.activity_firstLine);
-            tempo = (TextView) v.findViewById(R.id.activity_secondLine);
-            numero = (TextView) v.findViewById(R.id.activity_secondLine2);
-            time_icon = (ImageView)v.findViewById(R.id.reportTime_icon);
-            activity_icon = (ImageView)v.findViewById(R.id.reportNum_icon);
+            data = v.findViewById(R.id.activity_firstLine);
+            tempo = v.findViewById(R.id.activity_secondLine);
+            numero = v.findViewById(R.id.activity_secondLine2);
+            time_icon = v.findViewById(R.id.reportTime_icon);
+            activity_icon = v.findViewById(R.id.reportNum_icon);
         }
     }
 

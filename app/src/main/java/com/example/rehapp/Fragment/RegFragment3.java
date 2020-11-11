@@ -48,7 +48,6 @@ public class RegFragment3 extends Fragment {
         final CardView cardView = view.findViewById(R.id.card1); // card
         final TextView text = view.findViewById(R.id.minore); // testo
         final ImageView image = view.findViewById(R.id.run);  // icona
-        final String TAG = "informazioni";
 
 
         cardView.setOnClickListener(new View.OnClickListener() {

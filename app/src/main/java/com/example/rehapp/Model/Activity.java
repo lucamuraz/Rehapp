@@ -1,5 +1,7 @@
 package com.example.rehapp.Model;
 
+import androidx.annotation.NonNull;
+
 public class Activity {
 
 
@@ -38,13 +40,16 @@ public class Activity {
         return categoria +" - "+ titolo;
     }
 
-    public String getInfo(){ return tipologia + " - "+data +" - "+ durata+" min."; }
+    public String getInfo() {
+        String res = "";
+        res += tipologia + " - " + data + " - ";
+        if (!durata.equals("")) {
+            res += durata.substring(0, 2) + " h " + durata.substring(3) + " m";
+        }
+        return res;
+    }
 
     public String getCategoria() { return categoria; }
-
-    public void setTipologia(String tipologia) {
-        this.tipologia = tipologia;
-    }
 
     public void setTitolo(String titolo) {
         this.titolo = titolo;
@@ -54,10 +59,7 @@ public class Activity {
         this.data = data;
     }
 
-    public void setDurata(String durata) { this.durata = durata; }
-
-    public void setCategoria(String categoria) { this.categoria=categoria; }
-
+    @NonNull
     public String toString(){
         return titolo+", "+durata+", "+tipologia+", "+categoria+", "+data;
     }

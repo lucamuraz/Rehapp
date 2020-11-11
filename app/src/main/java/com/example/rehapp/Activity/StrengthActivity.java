@@ -31,6 +31,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class StrengthActivity extends AppCompatActivity {
 
@@ -41,7 +42,6 @@ public class StrengthActivity extends AppCompatActivity {
 
     Context ctx=this;
 
-    private Toolbar toolbar;
     private Button buttonStart;
     private TextView timerTextView;
     private CountDownTimer countDownTimer;
@@ -84,7 +84,7 @@ public class StrengthActivity extends AppCompatActivity {
 
     private TextView time;
     private TextView desc;
-    private String timet;
+    //private String timet;
     private String descText;
 
     @Override
@@ -96,7 +96,7 @@ public class StrengthActivity extends AppCompatActivity {
         int edss=Integer.parseInt(SaveSharedPreferences.getUserEdss(ctx));
         exrecizeList=TrainingMaker.getInstance().getNewExercizeList("F",edss);
 
-        toolbar = findViewById(R.id.toolbar2);
+        Toolbar toolbar = findViewById(R.id.toolbar2);
         buttonStart = findViewById(R.id.buttonStart);
         buttonPauseResume = findViewById(R.id.buttonPauseResume);
         buttonStop = findViewById(R.id.buttonStop);
@@ -124,6 +124,7 @@ public class StrengthActivity extends AppCompatActivity {
         time=findViewById(R.id.textView4);
         desc=findViewById(R.id.textView5);
 
+        String repetitions;
         if(edss<6){
             nRep=6;
             txt3.setText(exrecizeList.get(1).getTitle());
@@ -132,6 +133,8 @@ public class StrengthActivity extends AppCompatActivity {
             txt6.setText(exrecizeList.get(4).getTitle());
             txt7.setText(exrecizeList.get(5).getTitle());
             txt8.setText(exrecizeList.get(6).getTitle());
+            repetitions ="Eseguire 15 ripetizioni per 3 volte";
+            time.setText(repetitions);
         }else{
             nRep=4;
             txt4.setText(exrecizeList.get(1).getTitle());
@@ -140,21 +143,14 @@ public class StrengthActivity extends AppCompatActivity {
             txt7.setText(exrecizeList.get(4).getTitle());
             txt3.setVisibility(View.INVISIBLE);
             txt8.setVisibility(View.INVISIBLE);
+            repetitions ="Eseguire 10 ripetizioni per 3 volte";
+            time.setText(repetitions);
         }
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Allenamento di forza");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Allenamento di forza");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left_24px);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(ctx, Home.class);
-                startActivity(i);
-                finish();
-            }
-        });
 
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,8 +197,8 @@ public class StrengthActivity extends AppCompatActivity {
                 }else{ //equals FATTO
                     pauseCrono();
                     totalTimeCount+=pauseOffset/1000;
-                    timet="Tempo totale: "+totalTimeCount+" sec";
-                    time.setText(timet);
+                    //timet="Tempo totale: "+totalTimeCount+" sec";
+                    //time.setText(timet);
                     startRest();
                 }
             }
@@ -242,9 +238,13 @@ public class StrengthActivity extends AppCompatActivity {
                     cardView.setVisibility(View.INVISIBLE);
                     buttonSave.setVisibility(View.INVISIBLE);
                     buttonDelete.setVisibility(View.INVISIBLE);
-                    //time.setVisibility(View.VISIBLE);
+                    buttonPauseResume.setVisibility(View.VISIBLE);
+                    buttonStop.setVisibility(View.VISIBLE);
                     desc.setVisibility(View.VISIBLE);
                     info1.setVisibility(View.VISIBLE);
+                    if(crono){
+                        time.setVisibility(View.VISIBLE);
+                    }
                 }else{
                     Intent i=new Intent(ctx, ExplainActivity.class);
                     startActivity(i);
@@ -344,8 +344,8 @@ public class StrengthActivity extends AppCompatActivity {
                 desc.setText(descText);
                 mTimeLeftInMilliseconds=COUNTDOWN_REST;
                 totalTimeCount+=(COUNTDOWN_WARMUP-1000)/1000;
-                timet="Tempo totale: "+totalTimeCount +" sec";
-                time.setText(timet);
+                //timet="Tempo totale: "+totalTimeCount +" sec";
+                //time.setText(timet);
                 resumeTimer();
                 break;
             case 3: //inizia le ripetizioni
@@ -353,7 +353,7 @@ public class StrengthActivity extends AppCompatActivity {
                     buttonStop.setText(R.string.fatto);
                     repNum++;
                     //descText="Esercizio n: "+repNum;
-                    desc.setText(descText);
+                    //desc.setText(descText);
                     start=false;
                     if(repNum==nRep){ //sono arrivato all'ultima ripetizione
                         stepNum++;
@@ -368,15 +368,16 @@ public class StrengthActivity extends AppCompatActivity {
                     descText=exrecizeList.get(repNum+1).getTitle();
                     image.setImageResource(exrecizeList.get(repNum+1).getImageId());
                     desc.setText(descText);
+                    time.setVisibility(View.VISIBLE);
                     if(repNum==0){
                         totalTimeCount+=(COUNTDOWN_REST-1000)/1000; // se sono alla prima ripetizione aggiungo al tempo totale dell'allenamento quello trascorso con il warmup
-                        timet="Tempo totale: "+totalTimeCount +" sec";
-                        time.setText(timet);
+                        //timet="Tempo totale: "+totalTimeCount +" sec";
+                        //time.setText(timet);
                     }else{
                         //totalTimeCount+=tempo ripetizione precednete; se sono alle successive ripetizioni aggiungo al tempo totale dell'allenamento quello trascorso con la ripetizione precedente
                         totalTimeCount+=(COUNTDOWN_REST-1000)/1000;
-                        timet="Tempo totale: "+totalTimeCount+" sec";
-                        time.setText(timet);
+                        //timet="Tempo totale: "+totalTimeCount+" sec";
+                        //time.setText(timet);
                         chronometer.setBase(SystemClock.elapsedRealtime());
                         pauseOffset=0;
                     }
@@ -389,18 +390,20 @@ public class StrengthActivity extends AppCompatActivity {
                 break;
             case 4: //cooldown
                 if(start){
-                    descText="Stretching";
-                    desc.setText(descText);
                     buttonStop.setText(R.string.stop);
                     buttonStart.setVisibility(View.INVISIBLE);
                     buttonPauseResume.setVisibility(View.VISIBLE);
                     buttonStop.setVisibility(View.VISIBLE);
                     mTimeLeftInMilliseconds=COUNTDOWN_COOLDOWN;
                     stepNum++;
-                    timet="Tempo totale: "+totalTimeCount +" sec";
-                    time.setText(timet);
+                    //timet="Tempo totale: "+totalTimeCount +" sec";
+                    //time.setText(timet);
                     resumeTimer();
                 }else{
+                    descText="Stretching";
+                    desc.setText(descText);
+                    time.setText("");
+                    image.setImageResource(exrecizeList.get(nRep+1).getImageId());
                     totalTimeCount+=(COUNTDOWN_REST-1000)/1000;
                     totalTimeCount+=pauseOffset/1000;
                     buttonStart.setVisibility(View.VISIBLE);
@@ -412,8 +415,8 @@ public class StrengthActivity extends AppCompatActivity {
                 descText="Allenamento finito";
                 desc.setText(descText);
                 totalTimeCount+=(COUNTDOWN_COOLDOWN-1000)/1000;
-                timet="Tempo totale: "+totalTimeCount +" sec";
-                time.setText(timet);
+                //timet="Tempo totale: "+totalTimeCount +" sec";
+                //time.setText(timet);
                 stopOption();
                 break;
         }
@@ -437,6 +440,7 @@ public class StrengthActivity extends AppCompatActivity {
      }
 
     public void startRest(){
+        time.setVisibility(View.INVISIBLE);
         descText="Riposo";
         image.setImageResource(R.drawable.ic_rest_foreground);
         desc.setText(descText);
@@ -475,6 +479,8 @@ public class StrengthActivity extends AppCompatActivity {
         cardView.setVisibility(View.VISIBLE);
         buttonSave.setVisibility(View.VISIBLE);
         buttonDelete.setVisibility(View.VISIBLE);
+        buttonPauseResume.setVisibility(View.INVISIBLE);
+        buttonStop.setVisibility(View.INVISIBLE);
     }
 
     private void saveActivity(){
@@ -495,7 +501,7 @@ public class StrengthActivity extends AppCompatActivity {
         String username= SaveSharedPreferences.getUser(ctx);
         String categoria="Allenamento";
 
-        String id="";
+        String id;
         id= AppManager.getInstance().getLastId();
         AppManager.getInstance().setLastId("00"+id.substring(2));
 

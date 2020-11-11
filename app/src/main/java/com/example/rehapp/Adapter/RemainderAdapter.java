@@ -64,9 +64,9 @@ public class RemainderAdapter extends
         public ViewHolder(View v) {
             super(v);
             view=v;
-            titolo = (TextView) v.findViewById(R.id.activity_firstLine);
-            informazioni = (TextView) v.findViewById(R.id.activity_secondLine);
-            remainder_icon = (ImageView)v.findViewById(R.id.reportTime_icon);
+            titolo = v.findViewById(R.id.activity_firstLine);
+            informazioni = v.findViewById(R.id.activity_secondLine);
+            remainder_icon = v.findViewById(R.id.reportTime_icon);
         }
     }
 
