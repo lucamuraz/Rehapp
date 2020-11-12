@@ -235,12 +235,13 @@
                     android:id="@+id/domTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="39.5dp"
                     android:layout_marginBottom="2dp"
                     android:text="@string/d"
                     android:textSize="17sp"
                     app:layout_constraintBottom_toTopOf="@id/domenica"
-                    app:layout_constraintStart_toEndOf="@id/sabTxt" />
+                    app:layout_constraintStart_toStartOf="@id/domenica"
+                    app:layout_constraintEnd_toEndOf="@id/domenica"
+                    app:layout_constraintHorizontal_bias="0.5"/>
 
                 <ImageView
                     android:id="@+id/domenica"
@@ -258,12 +259,13 @@
                     android:id="@+id/sabTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="39.5dp"
                     android:layout_marginBottom="2dp"
                     android:text="@string/s"
                     android:textSize="17sp"
                     app:layout_constraintBottom_toTopOf="@id/sabato"
-                    app:layout_constraintStart_toEndOf="@id/venTxt" />
+                    app:layout_constraintEnd_toEndOf="@id/sabato"
+                    app:layout_constraintStart_toStartOf="@id/sabato"
+                    app:layout_constraintHorizontal_bias="0.5"/>
 
                 <ImageView
                     android:id="@+id/sabato"
@@ -281,12 +283,13 @@
                     android:id="@+id/venTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="38.5dp"
                     android:layout_marginBottom="2dp"
                     android:text="@string/v"
                     android:textSize="17sp"
                     app:layout_constraintBottom_toTopOf="@id/venerdì"
-                    app:layout_constraintStart_toEndOf="@id/gioTxt" />
+                    app:layout_constraintEnd_toEndOf="@id/venerdì"
+                    app:layout_constraintStart_toStartOf="@id/venerdì"
+                    app:layout_constraintHorizontal_bias="0.5"/>
 
                 <ImageView
                     android:id="@+id/venerdì"
@@ -307,11 +310,10 @@
                     android:src="@drawable/ic_future_foreground"
                     android:text="@string/g"
                     android:textSize="17sp"
-                    android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@id/giovedì"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/giovedì"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="@id/giovedì" />
 
                 <ImageView
                     android:id="@+id/giovedì"
@@ -330,12 +332,13 @@
                     android:id="@+id/merTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="37.5dp"
                     android:layout_marginBottom="2dp"
                     android:text="@string/m"
                     android:textSize="17sp"
                     app:layout_constraintBottom_toTopOf="@id/mercoledì"
-                    app:layout_constraintEnd_toStartOf="@id/gioTxt" />
+                    app:layout_constraintEnd_toEndOf="@id/mercoledì"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@id/mercoledì"/>
 
                 <ImageView
                     android:id="@+id/mercoledì"
@@ -353,12 +356,13 @@
                     android:id="@+id/marTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="35dp"
                     android:layout_marginBottom="2dp"
                     android:text="@string/m"
                     android:textSize="17sp"
                     app:layout_constraintBottom_toTopOf="@id/martedì"
-                    app:layout_constraintEnd_toStartOf="@id/merTxt" />
+                    app:layout_constraintEnd_toEndOf="@id/martedì"
+                    app:layout_constraintStart_toStartOf="@id/martedì"
+                    app:layout_constraintHorizontal_bias="0.5"/>
 
                 <ImageView
                     android:id="@+id/martedì"
@@ -376,12 +380,13 @@
                     android:id="@+id/lunTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="38dp"
                     android:layout_marginBottom="2dp"
                     android:text="@string/l"
                     android:textSize="17sp"
                     app:layout_constraintBottom_toTopOf="@id/lunedì"
-                    app:layout_constraintEnd_toStartOf="@id/marTxt" />
+                    app:layout_constraintEnd_toEndOf="@id/lunedì"
+                    app:layout_constraintStart_toStartOf="@id/lunedì"
+                    app:layout_constraintHorizontal_bias="0.5"/>
 
                 <ImageView
                     android:id="@+id/lunedì"

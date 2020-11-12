@@ -263,7 +263,7 @@ public class DAO {
                     getActivity(username, context);
                     getRemainder(username, context);
                     Intent i = new Intent(context, Home.class);
-                    i.putExtra("username", username);
+                    i.putExtra("redirect", 0);
                     context.startActivity(i);
                 }else{
                     builder.setMessage("Password errata");

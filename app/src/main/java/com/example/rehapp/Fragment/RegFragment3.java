@@ -153,6 +153,7 @@ public class RegFragment3 extends Fragment {
                         String edss = input.getText().toString();
                         m.register(nome,cognome,username,email,password,edss);
                         Intent i = new Intent(getActivity(), LogActivity.class);
+                        i.putExtra("redirect", 0);
                         startActivity(i); }
                 });
                 input.addTextChangedListener(new TextWatcher() {

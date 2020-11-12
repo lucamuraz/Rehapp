@@ -1,6 +1,7 @@
 package com.example.rehapp.Fragment;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
@@ -68,6 +69,7 @@ public class HomeFragment extends Fragment {
             int day=AppManager.getInstance().getDayWeek();
             if(day==i){
                 weekTxt.get(i).setTextColor(getResources().getColor(R.color.colorPrimary));
+                weekTxt.get(i).setTypeface(Typeface.DEFAULT_BOLD);
             }
             switch (value){
                 case "T":

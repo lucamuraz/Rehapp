@@ -41,16 +41,14 @@ public class Home extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Intent intent=getIntent();
         Bundle extras = intent.getExtras();
-        if(extras!=null){
-            int tmp = extras.getInt("redirect");
-            if(tmp==1){
-                bottomNavigationView.setSelectedItemId(R.id.navigation_calendar);
-                openFragment(CalendarFragment.newInstance());
-            }else if(tmp==3){
-                bottomNavigationView.setSelectedItemId(R.id.navigation_notify);
-                openFragment(NotifyFragment.newInstance());
-            }
-        } else{
+        int tmp = extras.getInt("redirect");
+        if(tmp==1){
+            bottomNavigationView.setSelectedItemId(R.id.navigation_calendar);
+            openFragment(CalendarFragment.newInstance());
+        }else if(tmp==3){
+            bottomNavigationView.setSelectedItemId(R.id.navigation_notify);
+            openFragment(NotifyFragment.newInstance());
+        }else if(tmp==0){
             bottomNavigationView.setSelectedItemId(R.id.navigation_home);
             openFragment(HomeFragment.newInstance());
         }

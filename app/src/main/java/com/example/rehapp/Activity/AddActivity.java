@@ -13,6 +13,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -109,25 +110,34 @@ public class AddActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String username=SaveSharedPreferences.getUser(ctx);
-                String categoria=category.getSelectedItem().toString();
-                String id;
-                id=AppManager.getInstance().getLastId();
-                AppManager.getInstance().setLastId("00"+id.substring(2));
 
-                String typeAct=type.getSelectedItem().toString();
                 String titolo=title.getText().toString();
                 String data=date.getText().toString();
                 String durata= duration.getText().toString();
-                m.addActivity(username, categoria, id, typeAct, durata, data, titolo);
+                String categoria=category.getSelectedItem().toString();
+                if(durata.equals("") && data.equals("")) {
+                    String toastMessage = "Campi mancanti!";
+                    Toast mToast = Toast.makeText(ctx, toastMessage, Toast.LENGTH_LONG);
+                    mToast.show();
+                }else{
+                    if(titolo.equals("")){
+                        titolo=categoria+" del "+data;
+                    }
+                    String typeAct=type.getSelectedItem().toString();
+                    String username=SaveSharedPreferences.getUser(ctx);
+                    String id;
+                    id=AppManager.getInstance().getLastId();
+                    AppManager.getInstance().setLastId("00"+id.substring(2));
+                    m.addActivity(username, categoria, id, typeAct, durata, data, titolo);
+                    AppManager.getInstance().addOnActivityList(new Activity(typeAct, titolo, data, durata, categoria), ctx);
 
-                AppManager.getInstance().addOnActivityList(new Activity(typeAct, titolo, data, durata, categoria), ctx);
+                    Intent i=new Intent(ctx, Home.class);
+                    i.putExtra("redirect", 1);
+                    startActivity(i);
 
-                Intent i=new Intent(ctx, Home.class);
-                i.putExtra("redirect", 1);
-                startActivity(i);
+                    finish();
+                }
 
-                finish();
             }
         });
 

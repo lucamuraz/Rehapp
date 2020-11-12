@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -71,23 +72,32 @@ public class AddNotification extends AppCompatActivity {
                 String hour=ora.getText().toString();
                 String title=titolo.getText().toString();
                 String username = SaveSharedPreferences.getUser(ctx);
-                m.setRemainder(title,date,hour,username); // scrivo nel database il nuovo promemoria.
-                AppManager.getInstance().addOnRemainderList(new Remainder(title,date,hour),ctx); // aggiorno la lista.
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(ctx, CHANNEL_ID)
-                        .setSmallIcon(R.drawable.ic_bell_foreground)
-                        .setContentTitle("Promemoria!")
-                        .setContentText(title)
-                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                        .setWhen(1);
-                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(ctx);
-                // notificationId is a unique int for each notification that you must define
-                notificationManager.notify(notificationId, builder.build());
 
-                // Torno al fragment delle notifiche.
-                Intent i=new Intent(ctx, Home.class);
-                i.putExtra("redirect", 3);
-                startActivity(i);
-                finish();
+                if(date.equals("") && hour.equals("") && title.equals("")){
+                    String toastMessage = "Campi mancanti!";
+                    Toast mToast = Toast.makeText(ctx, toastMessage, Toast.LENGTH_LONG);
+                    mToast.show();
+                }else{
+                    m.setRemainder(title,date,hour,username); // scrivo nel database il nuovo promemoria.
+                    AppManager.getInstance().addOnRemainderList(new Remainder(title,date,hour),ctx); // aggiorno la lista.
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(ctx, CHANNEL_ID)
+                            .setSmallIcon(R.drawable.ic_bell_foreground)
+                            .setContentTitle("Promemoria!")
+                            .setContentText(title)
+                            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                            .setWhen(1);
+                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(ctx);
+                    // notificationId is a unique int for each notification that you must define
+                    notificationManager.notify(notificationId, builder.build());
+
+                    // Torno al fragment delle notifiche.
+                    Intent i=new Intent(ctx, Home.class);
+                    i.putExtra("redirect", 3);
+                    startActivity(i);
+                    finish();
+                }
+
+
             }
         });
         super.onCreate(savedInstanceState);

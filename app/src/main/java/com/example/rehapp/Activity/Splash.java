@@ -52,6 +52,7 @@ public class Splash extends AppCompatActivity {
                     Intent i;
                     if(SaveSharedPreferences.getUserName(ctx).length()!=0){
                         i=new Intent(Splash.this,Home.class);
+                        i.putExtra("redirect", 0);
                     }
                     else{
                         i=new Intent(Splash.this,MainActivity.class);
