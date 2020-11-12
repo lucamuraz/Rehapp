@@ -58,7 +58,7 @@ public class NotifyFragment extends Fragment {
         } );
 
         //TODO lista gia presente:
-        remainderList = AppManager.getInstance().getRemainderList(); // preno la lista piena
+        remainderList = AppManager.getInstance().getRemainderList(); // prendo la lista piena
         if(remainderList != null){
             RemainderAdapter adapter = new RemainderAdapter(remainderList); // la visulizzo con l'adpter
             ImageView image = rootView.findViewById(R.id.icona);

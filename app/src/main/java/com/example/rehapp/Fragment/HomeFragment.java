@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.rehapp.Activity.EnduranceActivityH;
@@ -19,10 +20,15 @@ import com.example.rehapp.R;
 import com.example.rehapp.SaveSharedPreferences;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
 public class HomeFragment extends Fragment {
+
+    List<ImageView> weekImg= new ArrayList<>();
+    List<TextView> weekTxt= new ArrayList<>();
 
     public HomeFragment() {
         // Required empty public constructor
@@ -42,6 +48,38 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         final View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
+        weekImg.add((ImageView) rootView.findViewById(R.id.lunedì));
+        weekImg.add((ImageView)rootView.findViewById(R.id.martedì));
+        weekImg.add((ImageView)rootView.findViewById(R.id.mercoledì));
+        weekImg.add((ImageView)rootView.findViewById(R.id.giovedì));
+        weekImg.add((ImageView)rootView.findViewById(R.id.venerdì));
+        weekImg.add((ImageView)rootView.findViewById(R.id.sabato));
+        weekImg.add((ImageView)rootView.findViewById(R.id.domenica));
+        weekTxt.add((TextView)rootView.findViewById(R.id.lunTxt));
+        weekTxt.add((TextView)rootView.findViewById(R.id.marTxt));
+        weekTxt.add((TextView)rootView.findViewById(R.id.merTxt));
+        weekTxt.add((TextView)rootView.findViewById(R.id.gioTxt));
+        weekTxt.add((TextView)rootView.findViewById(R.id.venTxt));
+        weekTxt.add((TextView)rootView.findViewById(R.id.sabTxt));
+        weekTxt.add((TextView)rootView.findViewById(R.id.domTxt));
+
+        for(int i=0; i<7; i++){
+            String value=AppManager.getInstance().getWeek()[i];
+            int day=AppManager.getInstance().getDayWeek();
+            if(day==i){
+                weekTxt.get(i).setTextColor(getResources().getColor(R.color.colorPrimary));
+            }
+            switch (value){
+                case "T":
+                    weekImg.get(i).setImageResource(R.drawable.ic_done_foreground);
+                    break;
+                case "F":
+                    weekImg.get(i).setImageResource(R.drawable.ic_not_foreground);
+                    break;
+                default:
+                    break;
+            }
+        }
 
         CardView enduBtn=rootView.findViewById(R.id.endurance);
         enduBtn.setOnClickListener(new View.OnClickListener() {
@@ -51,11 +89,9 @@ public class HomeFragment extends Fragment {
                 if(edss<6.5){
                     Intent i = new Intent(rootView.getContext(), EnduranceActivityL.class);
                     startActivity(i);
-                    //getActivity().finish();
                 }else{
                     Intent i = new Intent(rootView.getContext(), EnduranceActivityH.class);
                     startActivity(i);
-                    //getActivity().finish();
                 }
             }
         });
@@ -66,16 +102,28 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 Intent i = new Intent(rootView.getContext(), StrengthActivity.class);
                 startActivity(i);
-                //getActivity().finish();
             }
         });
 
         final BottomNavigationView bottomNavigationView= AppManager.getInstance().getBottomNavigationView();
 
+
         TextView nbActivities=rootView.findViewById(R.id.totAct);
         nbActivities.setText(AppManager.getInstance().getTotalAct());
+
+        int totTime=AppManager.getInstance().getTotTime();
         TextView timeActivities=rootView.findViewById(R.id.totTime);
-        timeActivities.setText(AppManager.getInstance().getTotTime());
+        TextView minActivities=rootView.findViewById(R.id.timetext);
+        if(totTime>9999){
+            totTime=totTime/60;
+            String txt="ORE";
+            minActivities.setText(txt);
+        }else{
+            String txt="MINUTI";
+            minActivities.setText(txt);
+        }
+        String time=""+totTime;
+        timeActivities.setText(time);
 
         CardView cardView=rootView.findViewById(R.id.cardTotal);
         cardView.setOnClickListener(new View.OnClickListener() {

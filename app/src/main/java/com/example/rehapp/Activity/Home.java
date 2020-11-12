@@ -37,9 +37,23 @@ public class Home extends AppCompatActivity {
         AppManager.getInstance().setBottomNavigationView(bottomNavigationView);
         bottomNavigationView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_AUTO);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
-        openFragment(HomeFragment.newInstance());
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        Intent intent=getIntent();
+        Bundle extras = intent.getExtras();
+        if(extras!=null){
+            int tmp = extras.getInt("redirect");
+            if(tmp==1){
+                bottomNavigationView.setSelectedItemId(R.id.navigation_calendar);
+                openFragment(CalendarFragment.newInstance());
+            }else if(tmp==3){
+                bottomNavigationView.setSelectedItemId(R.id.navigation_notify);
+                openFragment(NotifyFragment.newInstance());
+            }
+        } else{
+            bottomNavigationView.setSelectedItemId(R.id.navigation_home);
+            openFragment(HomeFragment.newInstance());
+        }
     }
     
 
@@ -90,4 +104,10 @@ public class Home extends AppCompatActivity {
                     return false;
                 }
             };
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
 }

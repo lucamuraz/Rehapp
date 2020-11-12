@@ -11,20 +11,29 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 public class AppManager {
     @SuppressLint("StaticFieldLeak")
     private static AppManager singleInstance;
     private List<Activity> activityList;
     private List<Remainder> remainderList;
+    private String[] week = new String[7];
+    private String[] days = new String[7];
     private String lastId;
     private Activity activity;
     BottomNavigationView bottomNavigationView;
-    private  Context ctx;
+    private Context ctx;
+    private int dayOfWeek;
 
     public static AppManager getInstance() {
         if (singleInstance == null) {
@@ -67,6 +76,14 @@ public class AppManager {
     }
 
     public void addOnActivityList(Activity act, Context context){
+        String date=act.getData();
+        for(int i=0; i<7; i++){
+            if(days[i].equals(date)){
+                if(!week[i].equals("T")){
+                    week[i]="T";
+                }
+            }
+        }
         activityList.add(act);
         writeToFile(activityList, context);
     }
@@ -162,6 +179,48 @@ public class AppManager {
         return monthReportList;
     }
 
+    public void setCurrentWeek() {
+        Calendar now = Calendar.getInstance();
+
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ITALY);
+        Date dateobj = new Date();
+        String date1 =format.format(dateobj);
+        days = new String[7];
+        int delta = -now.get(GregorianCalendar.DAY_OF_WEEK) + 2; //add 2 if your week start on monday
+        now.add(Calendar.DAY_OF_MONTH, delta );
+        for (int i = 0; i < 7; i++)
+        {
+            days[i] = format.format(now.getTime());
+            now.add(Calendar.DAY_OF_MONTH, 1);
+        }
+        List<Activity> tmp;
+        boolean after=false;
+        int i=0;
+        for (String day: days) {
+            tmp=getActivityListForDate(day);
+            if(day.equals(date1)){
+                dayOfWeek=i;
+                if(tmp.size()>0){
+                    week[i]="T";
+                }else{
+                    week[i]="N";
+                }
+                after=true;
+            }else{
+                if(after){
+                    week[i]="N";
+                }else{
+                    if(tmp.size()>0){
+                        week[i]="T";
+                    }else{
+                        week[i]="F";
+                    }
+                }
+            }
+            i++;
+        }
+    }
+
     private String getMonth(String m){
         String month="";
         switch (m){
@@ -215,13 +274,24 @@ public class AppManager {
         return time;
     }
 
-    public String getTotTime(){
-        String res="";
+    public int getTotTime(){
         int time=0;
         for (Activity act : activityList) {
             String tm=act.getDurata();
             time+=getTime(tm);
         }
-        return res+time;
+        return time;
+    }
+
+    public String[] getWeek() {
+        return week;
+    }
+
+    public void SetDayOfWeek(int i, String value){
+        week[i]=value;
+    }
+
+    public int getDayWeek() {
+        return dayOfWeek;
     }
 }

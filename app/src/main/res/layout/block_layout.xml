@@ -46,8 +46,8 @@
         android:layout_marginStart="60dp"
         android:ellipsize="marquee"
         android:singleLine="true"
-        android:text="Teacher"
-        android:textSize="14sp" />
+        android:text="@string/riga1Report"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/activity_secondLine2"
@@ -59,9 +59,9 @@
         android:layout_marginBottom="43dp"
         android:ellipsize="marquee"
         android:singleLine="true"
-        android:text="Teacher"
+        android:text="@string/riga2report"
         android:layout_marginStart="60dp"
-        android:textSize="14sp" />
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/activity_firstLine"
@@ -74,7 +74,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginBottom="6dp"
         android:gravity="center_vertical"
-        android:text="Course"
+        android:text="@string/reportTitle"
         android:textSize="20sp" />
 
 </RelativeLayout>

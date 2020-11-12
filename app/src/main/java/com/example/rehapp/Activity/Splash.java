@@ -91,6 +91,7 @@ public class Splash extends AppCompatActivity {
         }
 
         AppManager.getInstance().setActivityList(activityList);
+        AppManager.getInstance().setCurrentWeek();
     }
 
     private void readRemainderFromFile(Context context){
