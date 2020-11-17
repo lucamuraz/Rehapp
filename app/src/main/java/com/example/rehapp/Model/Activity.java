@@ -5,14 +5,15 @@ import androidx.annotation.NonNull;
 public class Activity {
 
 
-
+    private String id;
     private String categoria;
     private String tipologia;
     private String titolo;
     private String data;
     private String durata;
 
-    public Activity(String tipologia, String titolo, String data, String durata, String categoria) {
+    public Activity(String id, String tipologia, String titolo, String data, String durata, String categoria) {
+        this.id=id;
         this.tipologia = tipologia;
         this.titolo = titolo;
         this.data = data;
@@ -40,6 +41,10 @@ public class Activity {
         return categoria +" - "+ titolo;
     }
 
+    public String getId(){ return id; }
+
+    public void setId(String id){ this.id=id; }
+
     public String getInfo() {
         String res = "";
         res += tipologia + " - " + data + " - ";
@@ -59,8 +64,14 @@ public class Activity {
         this.data = data;
     }
 
+    public void setCategoria(String categoria){ this.categoria=categoria; }
+
+    public void setTipologia(String tipologia){ this.tipologia=tipologia; }
+
+    public void setDurata(String durata){ this.durata=durata; }
+
     @NonNull
     public String toString(){
-        return titolo+", "+durata+", "+tipologia+", "+categoria+", "+data;
+        return id+", "+titolo+", "+durata+", "+tipologia+", "+categoria+", "+data;
     }
 }

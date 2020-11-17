@@ -147,4 +147,9 @@
     <string name="reportTitle">Mese</string>
     <string name="teacher">Teacher</string>
     <string name="course">Course</string>
+    <string name="modifica">Modifica</string>
+    <string name="elimina">Elimina</string>
+    <string name="save1">Salva</string>
+    <string name="annulla">Annulla</string>
+    <string name="ok">OK</string>
 </resources>

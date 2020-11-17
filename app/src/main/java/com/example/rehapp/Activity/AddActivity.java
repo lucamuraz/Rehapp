@@ -129,7 +129,7 @@ public class AddActivity extends AppCompatActivity {
                     id=AppManager.getInstance().getLastId();
                     AppManager.getInstance().setLastId("00"+id.substring(2));
                     m.addActivity(username, categoria, id, typeAct, durata, data, titolo);
-                    AppManager.getInstance().addOnActivityList(new Activity(typeAct, titolo, data, durata, categoria), ctx);
+                    AppManager.getInstance().addOnActivityList(new Activity(id, typeAct, titolo, data, durata, categoria), ctx);
 
                     Intent i=new Intent(ctx, Home.class);
                     i.putExtra("redirect", 1);

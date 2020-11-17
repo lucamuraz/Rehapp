@@ -89,6 +89,7 @@ public class DAO {
                         String category=stringObjectEntry.getKey();
                         for (Map.Entry<String, Object> stringObjectEntry1 : nn.entrySet()) {
                             Map<String, Object> p = (Map<String, Object>) stringObjectEntry1.getValue();
+                            String id=stringObjectEntry1.getKey();
                             Iterator<Map.Entry<String, Object>> it1 = p.entrySet().iterator();
                             String data = "";
                             String durata = "";
@@ -114,7 +115,7 @@ public class DAO {
                                         break;
                                 }
                             }
-                            Activity act = new Activity(tipologia, titolo, data, durata, category);
+                            Activity act = new Activity(id, tipologia, titolo, data, durata, category);
                             activityList.add(act);
                         }
                     }
@@ -132,8 +133,23 @@ public class DAO {
     }
 
     // crea un file contenente le attività dell'utente
-    private void writeActivitiesToFile(List<Activity> list, Context context) {
+    public void writeActivitiesToFile(List<Activity> list, Context context) {
         AppManager.getInstance().setActivityList(list);
+        StringBuilder data= new StringBuilder();
+        for (Activity act: list) {
+            data.append(act.toString()).append("\n");
+        }
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("config.txt", Context.MODE_PRIVATE));
+            outputStreamWriter.write(data.toString());
+            outputStreamWriter.close();
+        }
+        catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
+    }
+
+    public void editActivitiesToFile(List<Activity> list, Context context) {
         StringBuilder data= new StringBuilder();
         for (Activity act: list) {
             data.append(act.toString()).append("\n");
@@ -298,6 +314,18 @@ public class DAO {
     public void saveNewPassword(String password, String username){
         DatabaseReference myRef3 = mDB.getReference("Utenti").child(username).child("Password");
         myRef3.setValue(password);
+    }
+
+    public void editActivity(Activity oldActivity, Activity newActivity, String username){
+        deleteActivity(oldActivity, username);
+        addActivity(username, newActivity.getCategoria(), newActivity.getId(), newActivity.getTipologia(), newActivity.getDurata(), newActivity.getData(), newActivity.getTitolo());
+    }
+
+    public void deleteActivity(Activity activity, String username){
+        String cat=activity.getCategoria();
+        String id=activity.getId();
+        DatabaseReference myRef3 = mDB.getReference("Utenti").child(username).child("Attività").child(cat).child(id);
+        myRef3.removeValue();
     }
 
 }

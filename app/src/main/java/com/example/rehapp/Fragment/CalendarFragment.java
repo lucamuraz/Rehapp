@@ -55,7 +55,7 @@ public class CalendarFragment extends Fragment implements ActivityAdapter.ItemCl
         String date1 =df.format(dateobj);
         activityList= AppManager.getInstance().getActivityListForDate(date1);
         if(activityList.size()==0){
-            activityList.add(new Activity("Clicca qui per iniziare una nuova attività", "", "", "", "Oggi non hai ancora fatto attività!"));
+            activityList.add(new Activity("","Clicca qui per iniziare una nuova attività", "", "", "", "Oggi non hai ancora fatto attività!"));
         }
     }
 
@@ -89,7 +89,7 @@ public class CalendarFragment extends Fragment implements ActivityAdapter.ItemCl
                 String date1 =df.format(dateobj);
                 activityList= AppManager.getInstance().getActivityListForDate(date);
                 if(date.equals(date1) && activityList.size()==0){
-                    activityList.add(new Activity("Clicca qui per iniziare una nuova attività", "", "", "", "Non hai ancora fatto attività!"));
+                    activityList.add(new Activity("", "Clicca qui per iniziare una nuova attività", "", "", "", "Non hai ancora fatto attività!"));
                 }
                 //Log.i("Info", "data is:"+activityList +"for date: "+date);
                 ActivityAdapter adapter = new ActivityAdapter(activityList, itemClickListener);

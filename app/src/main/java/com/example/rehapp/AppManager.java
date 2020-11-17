@@ -5,6 +5,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.rehapp.Model.Activity;
+import com.example.rehapp.Model.DAO;
 import com.example.rehapp.Model.MonthReport;
 import com.example.rehapp.Model.Remainder;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -27,7 +28,7 @@ public class AppManager {
     private static AppManager singleInstance;
     private List<Activity> activityList;
     private List<Remainder> remainderList;
-    private String[] week = new String[7];
+    private String[] week = {"N","N","N","N","N","N","N"};
     private String[] days = new String[7];
     private String lastId;
     private Activity activity;
@@ -186,8 +187,12 @@ public class AppManager {
         Date dateobj = new Date();
         String date1 =format.format(dateobj);
         days = new String[7];
-        int delta = -now.get(GregorianCalendar.DAY_OF_WEEK) + 2; //add 2 if your week start on monday
-        now.add(Calendar.DAY_OF_MONTH, delta );
+        if(now.get(GregorianCalendar.DAY_OF_WEEK)==1){
+            int delta=-6;
+        }else{
+            int delta= -(now.get(GregorianCalendar.DAY_OF_WEEK))+2;
+            now.add(Calendar.DAY_OF_MONTH, delta );
+        }
         for (int i = 0; i < 7; i++)
         {
             days[i] = format.format(now.getTime());
@@ -293,5 +298,26 @@ public class AppManager {
 
     public int getDayWeek() {
         return dayOfWeek;
+    }
+
+    public void editActivity(Activity newActivity, Context context){
+        boolean found=false;
+        int i=0;
+        while(!found){
+            if(activityList.get(i).getId().equals(newActivity.getId())){
+                activityList.get(i).setTitolo(newActivity.getTitolo());
+                activityList.get(i).setData(newActivity.getData());
+                activityList.get(i).setCategoria(newActivity.getCategoria());
+                activityList.get(i).setTipologia(newActivity.getTipologia());
+                activityList.get(i).setDurata(newActivity.getDurata());
+                found=true;
+            }
+            i++;
+        }
+        DAO m=new DAO();
+        m.editActivity(activity, newActivity, SaveSharedPreferences.getUser(context));// modifica nel db
+        m.editActivitiesToFile(activityList, ctx);
+        //todo file
+        //todo db
     }
 }

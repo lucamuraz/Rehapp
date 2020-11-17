@@ -78,7 +78,7 @@ public class Splash extends AppCompatActivity {
 
                 while ( (receiveString = bufferedReader.readLine()) != null ) {
                     String[] str=receiveString.split(", ");
-                    Activity act= new Activity(str[2], str[0], str[4], str[1], str[3]);
+                    Activity act= new Activity(str[0], str[3], str[1], str[5], str[2], str[4]);
                     activityList.add(act);
                 }
 

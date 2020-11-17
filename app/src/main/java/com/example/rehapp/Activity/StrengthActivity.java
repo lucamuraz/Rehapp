@@ -521,7 +521,7 @@ public class StrengthActivity extends AppCompatActivity {
         String durata= ore+":"+min;
 
         m.addActivity(username, categoria, id, typeAct, durata, data, titolo);
-        AppManager.getInstance().addOnActivityList(new Activity(typeAct, titolo, data, durata, categoria), ctx);
+        AppManager.getInstance().addOnActivityList(new Activity(id, typeAct, titolo, data, durata, categoria), ctx);
     }
 
 }
