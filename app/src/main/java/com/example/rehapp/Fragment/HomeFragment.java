@@ -91,9 +91,11 @@ public class HomeFragment extends Fragment {
                 if(edss<6.5){
                     Intent i = new Intent(rootView.getContext(), EnduranceActivityL.class);
                     startActivity(i);
+                    requireActivity().finish();
                 }else{
                     Intent i = new Intent(rootView.getContext(), EnduranceActivityH.class);
                     startActivity(i);
+                    requireActivity().finish();
                 }
             }
         });
@@ -103,6 +105,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(rootView.getContext(), StrengthActivity.class);
+                requireActivity().finish();
                 startActivity(i);
             }
         });

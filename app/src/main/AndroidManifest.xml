@@ -20,21 +20,12 @@
         </activity>
         <activity android:name=".Activity.EnduranceActivityH"
             android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Activity.Home" />
         </activity>
         <activity android:name=".Activity.EnduranceActivityL"
             android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Activity.Home" />
         </activity>
         <activity android:name=".Activity.StrengthActivity"
             android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Activity.Home" />
         </activity>
         <activity android:name=".Activity.Home"
             android:screenOrientation="portrait" />

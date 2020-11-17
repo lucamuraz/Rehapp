@@ -151,6 +151,15 @@ public class StrengthActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setTitle("Allenamento di forza");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left_24px);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ctx, Home.class);
+                i.putExtra("redirect", 0);
+                startActivity(i);
+                finish();
+            }
+        });
 
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -212,6 +221,7 @@ public class StrengthActivity extends AppCompatActivity {
                 Toast mToast = Toast.makeText(ctx, toastMessage, Toast.LENGTH_LONG);
                 mToast.show();
                 Intent i = new Intent(ctx, Home.class);
+                i.putExtra("redirect", 0);
                 startActivity(i);
                 finish();
             }
@@ -224,6 +234,7 @@ public class StrengthActivity extends AppCompatActivity {
                 Toast mToast = Toast.makeText(ctx, toastMessage, Toast.LENGTH_LONG);
                 mToast.show();
                 Intent i = new Intent(ctx, Home.class);
+                i.putExtra("redirect", 0);
                 startActivity(i);
                 finish();
             }
