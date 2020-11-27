@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -24,6 +25,7 @@ public class RegFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_reg, container, false);
         final Button avanti = view.findViewById(R.id.Avanti);
+        final ImageButton back=view.findViewById(R.id.backReg);
         avanti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,6 +41,13 @@ public class RegFragment extends Fragment {
                 transaction.commit();
                 // TODO salvo nome e cognome dell'utente
                 saveData(n,c);
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                requireActivity().finish();
             }
         });
         return view;

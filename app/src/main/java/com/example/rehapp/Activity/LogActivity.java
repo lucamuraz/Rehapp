@@ -1,14 +1,14 @@
 package com.example.rehapp.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.example.rehapp.Model.DAO;
 import com.example.rehapp.R;
@@ -32,8 +32,7 @@ public class LogActivity extends AppCompatActivity{
     }
 
     public void back(View view) {
-        Intent i = new Intent(this,MainActivity.class);
-        startActivity(i);
+        finish();
     }
 
     public void btnRegistrati(View view) {

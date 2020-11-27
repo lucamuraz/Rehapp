@@ -3,6 +3,7 @@ package com.example.rehapp.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -34,6 +35,19 @@ public class SettingsActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setTitle("Impostazioni");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left_24px);
+        Intent intent=getIntent();
+        Bundle extras = intent.getExtras();
+        assert extras != null;
+        final int tmp = extras.getInt("redirect");
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ctx, Home.class);
+                i.putExtra("redirect", tmp);
+                startActivity(i);
+                finish();
+            }
+        });
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat {

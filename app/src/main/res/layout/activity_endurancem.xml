@@ -6,7 +6,7 @@
     android:background="@color/b">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar31"
+        android:id="@+id/toolbar31m"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonStart1"
+        android:id="@+id/buttonStart1m"
         android:layout_width="160dp"
         android:layout_height="64dp"
         android:layout_marginTop="618dp"
@@ -43,7 +43,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/buttonPauseResume1"
+            android:id="@+id/buttonPauseResume1m"
             android:layout_width="160dp"
             android:layout_height="64dp"
             android:layout_marginStart="25dp"
@@ -59,7 +59,7 @@
             android:layout_marginVertical="2dp"/>
 
         <Button
-            android:id="@+id/buttonStop1"
+            android:id="@+id/buttonStop1m"
             android:layout_width="160dp"
             android:layout_height="64dp"
             android:layout_marginEnd="25dp"
@@ -76,7 +76,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/textView151"
+        android:id="@+id/textView151m"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="438dp"
@@ -92,7 +92,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Chronometer
-        android:id="@+id/cronometer1"
+        android:id="@+id/cronometer1m"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="438dp"
@@ -107,7 +107,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/exPicL"
+        android:id="@+id/exPicLm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="70dp"
@@ -121,7 +121,7 @@
         android:contentDescription="@string/todo" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/dati1"
+        android:id="@+id/dati1m"
         android:layout_width="300dp"
         android:layout_height="483dp"
         android:layout_marginTop="90dp"
@@ -140,7 +140,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/saveText"
+                android:id="@+id/saveTextm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="153dp"
@@ -155,7 +155,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/deleteText"
+                android:id="@+id/deleteTextm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="283dp"
@@ -170,7 +170,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/endu1"
+                android:id="@+id/endu1m"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="38dp"
@@ -185,14 +185,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/endu2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/endu2m"
+                android:layout_width="106dp"
+                android:layout_height="18dp"
                 android:layout_marginStart="38dp"
                 android:layout_marginTop="84dp"
-                android:layout_marginEnd="153dp"
-                android:layout_marginBottom="380dp"
-                android:text="@string/forza2"
+                android:layout_marginEnd="156dp"
+                android:layout_marginBottom="381dp"
+                android:text="@string/endur"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -200,7 +200,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <View
-                android:id="@+id/divider1"
+                android:id="@+id/divider1m"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginHorizontal="15dp"
@@ -214,87 +214,67 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/endu3"
+                android:id="@+id/endu3m"
                 android:layout_width="203dp"
                 android:layout_height="36dp"
                 android:layout_marginStart="36dp"
-                android:layout_marginTop="145dp"
+                android:layout_marginTop="144dp"
                 android:layout_marginEnd="61dp"
-                android:layout_marginBottom="319dp"
-                android:text="@string/endu3"
+                android:layout_marginBottom="303dp"
+                android:text="@string/endu3m"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.529" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/endu4"
+                android:id="@+id/endu4m"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="48dp"
-                android:layout_marginTop="190dp"
-                android:layout_marginEnd="169dp"
-                android:layout_marginBottom="274dp"
+                android:layout_marginStart="44dp"
+                android:layout_marginTop="208dp"
+                android:layout_marginEnd="170dp"
+                android:layout_marginBottom="256dp"
                 android:text="@string/endu4"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/endu5"
+                android:id="@+id/endu5m"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="49dp"
-                android:layout_marginTop="232dp"
-                android:layout_marginEnd="190dp"
-                android:layout_marginBottom="232dp"
+                android:layout_marginStart="44dp"
+                android:layout_marginTop="251dp"
+                android:layout_marginEnd="191dp"
+                android:layout_marginBottom="213dp"
                 android:text="@string/endu5"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/endu6"
+                android:id="@+id/endu7m"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="276dp"
-                android:layout_marginEnd="168dp"
-                android:layout_marginBottom="188dp"
-                android:text="@string/endu6"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
-                android:id="@+id/endu7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
-                android:layout_marginTop="320dp"
-                android:layout_marginEnd="155dp"
-                android:layout_marginBottom="144dp"
+                android:layout_marginStart="37dp"
+                android:layout_marginTop="302dp"
+                android:layout_marginEnd="154dp"
+                android:layout_marginBottom="162dp"
                 android:text="@string/endu7"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <View
-                android:id="@+id/divider31"
+                android:id="@+id/divider31m"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginHorizontal="15dp"
@@ -308,7 +288,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/endu8"
+                android:id="@+id/endu8m"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
@@ -323,7 +303,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/endu9"
+                android:id="@+id/endu9m"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
@@ -338,7 +318,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/buttonSave1"
+                android:id="@+id/buttonSave1m"
                 android:layout_width="160dp"
                 android:layout_height="64dp"
                 android:layout_marginTop="187dp"
@@ -355,7 +335,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/buttonDelete1"
+                android:id="@+id/buttonDelete1m"
                 android:layout_width="160dp"
                 android:layout_height="64dp"
                 android:layout_marginTop="316dp"
@@ -372,7 +352,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                android:id="@+id/infoTot"
+                android:id="@+id/infoTotm"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="10dp"
@@ -389,7 +369,7 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/textView41"
+        android:id="@+id/textView41m"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
@@ -398,10 +378,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar31" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar31m" />
 
     <TextView
-        android:id="@+id/textView51"
+        android:id="@+id/textView51m"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -411,10 +391,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView41" />
+        app:layout_constraintTop_toBottomOf="@id/textView41m" />
 
     <ImageButton
-        android:id="@+id/infoTot1l"
+        android:id="@+id/infoTot1lm"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="560dp"

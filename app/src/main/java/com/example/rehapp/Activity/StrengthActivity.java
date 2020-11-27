@@ -125,7 +125,7 @@ public class StrengthActivity extends AppCompatActivity {
         desc=findViewById(R.id.textView5);
 
         String repetitions;
-        if(edss<6){
+        if(edss<=5){
             nRep=6;
             txt3.setText(exrecizeList.get(1).getTitle());
             txt4.setText(exrecizeList.get(2).getTitle());
@@ -135,15 +135,29 @@ public class StrengthActivity extends AppCompatActivity {
             txt8.setText(exrecizeList.get(6).getTitle());
             repetitions ="Eseguire 15 ripetizioni per 3 volte";
             time.setText(repetitions);
-        }else{
-            nRep=4;
-            txt4.setText(exrecizeList.get(1).getTitle());
-            txt5.setText(exrecizeList.get(2).getTitle());
-            txt6.setText(exrecizeList.get(3).getTitle());
-            txt7.setText(exrecizeList.get(4).getTitle());
+        }else if(edss>=6.5){
+            nRep=exrecizeList.size()-2;
+            txt4.setText(exrecizeList.get(2).getTitle());
+            txt5.setText(exrecizeList.get(3).getTitle());
+            txt6.setText(exrecizeList.get(4).getTitle());
+            txt7.setText(exrecizeList.get(5).getTitle());
+            if(nRep==5){
+                txt8.setText(exrecizeList.get(5).getTitle());
+            }else{
+                txt8.setVisibility(View.INVISIBLE);
+            }
             txt3.setVisibility(View.INVISIBLE);
+            repetitions ="Eseguire 10 ripetizioni per 2-3 volte";
+            time.setText(repetitions);
+        }else{
+            nRep=5;
+            txt3.setText(exrecizeList.get(1).getTitle());
+            txt4.setText(exrecizeList.get(2).getTitle());
+            txt5.setText(exrecizeList.get(3).getTitle());
+            txt6.setText(exrecizeList.get(4).getTitle());
+            txt7.setText(exrecizeList.get(5).getTitle());
             txt8.setVisibility(View.INVISIBLE);
-            repetitions ="Eseguire 10 ripetizioni per 3 volte";
+            repetitions ="Eseguire 12 ripetizioni per 3 volte";
             time.setText(repetitions);
         }
 

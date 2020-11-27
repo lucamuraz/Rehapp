@@ -46,7 +46,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_calendar">Calendario</string>
     <string name="menu_report">Report</string>
-    <string name="menu_notify">Notifiche</string>
+    <string name="menu_notify">Promemoria</string>
     <string name="hello_home_fragment">Hello home</string>
     <string name="notify">Notify</string>
     <string name="hello_report_fragment">Report</string>
@@ -115,10 +115,10 @@
     <string name="delete">ELIMINA</string>
     <string name="endu8">- 5 minuti cooldown</string>
     <string name="endu7">- 1 minuto riposo</string>
-    <string name="endu3">Almeno 15–20 minuti di attività a scelta tra le seguenti:</string>
+    <string name="endu3">Almeno 20 minuti di attività a scelta tra le seguenti:</string>
     <string name="endu3H">Un\'attività a scelta tra le seguenti:</string>
     <string name="endu7h">~  Armoergometro</string>
-    <string name="endu8h">Eseguire l\'attività in 3 ripetizioni da 3 minuti con 1 minuto di recupero</string>
+    <string name="endu8h">Eseguire l\'attività in 6 ripetizioni da 3 minuti con 1 minuto di recupero</string>
     <string name="endu4h">~  Uscita in carrozzina</string>
     <string name="endu4">~  Camminata</string>
     <string name="endu5">~  Cyclette</string>
@@ -152,4 +152,8 @@
     <string name="save1">Salva</string>
     <string name="annulla">Annulla</string>
     <string name="ok">OK</string>
+    <string name="endur">- 2 minuti riposo</string>
+    <string name="endu3m">Almeno 15–20 minuti di attività a scelta tra le seguenti:</string>
+    <string name="enduH">- 4 minuti riscaldamento</string>
+    <string name="endu8hh">- 4 minuti cooldown</string>
 </resources>

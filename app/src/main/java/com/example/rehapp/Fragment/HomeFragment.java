@@ -3,18 +3,18 @@ package com.example.rehapp.Fragment;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+
 import com.example.rehapp.Activity.EnduranceActivityH;
 import com.example.rehapp.Activity.EnduranceActivityL;
+import com.example.rehapp.Activity.EnduranceActivityM;
 import com.example.rehapp.Activity.StrengthActivity;
 import com.example.rehapp.AppManager;
 import com.example.rehapp.R;
@@ -23,7 +23,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 
 public class HomeFragment extends Fragment {
@@ -88,12 +87,16 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 int edss=Integer.parseInt(SaveSharedPreferences.getUserEdss(rootView.getContext()));
-                if(edss<6.5){
+                if(edss<=5){
                     Intent i = new Intent(rootView.getContext(), EnduranceActivityL.class);
                     startActivity(i);
                     requireActivity().finish();
-                }else{
+                }else if(edss>=6.5){
                     Intent i = new Intent(rootView.getContext(), EnduranceActivityH.class);
+                    startActivity(i);
+                    requireActivity().finish();
+                }else{
+                    Intent i = new Intent(rootView.getContext(), EnduranceActivityM.class);
                     startActivity(i);
                     requireActivity().finish();
                 }

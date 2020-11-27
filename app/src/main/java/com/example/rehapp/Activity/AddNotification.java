@@ -20,9 +20,8 @@ import androidx.core.app.NotificationManagerCompat;
 
 import com.example.rehapp.AppManager;
 import com.example.rehapp.Model.DAO;
-import com.example.rehapp.R;
-
 import com.example.rehapp.Model.Remainder;
+import com.example.rehapp.R;
 import com.example.rehapp.SaveSharedPreferences;
 
 import java.text.SimpleDateFormat;
@@ -54,7 +53,7 @@ public class AddNotification extends AppCompatActivity {
 
         toolbar=findViewById(R.id.toolbar4);
         setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setTitle("Aggiungi notifica");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Aggiungi promemoria");
         toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left_24px);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

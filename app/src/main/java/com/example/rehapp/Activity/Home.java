@@ -1,9 +1,15 @@
 package com.example.rehapp.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.rehapp.AppManager;
 import com.example.rehapp.Fragment.CalendarFragment;
@@ -11,15 +17,6 @@ import com.example.rehapp.Fragment.HomeFragment;
 import com.example.rehapp.Fragment.NotifyFragment;
 import com.example.rehapp.Fragment.ReportFragment;
 import com.example.rehapp.R;
-
-import android.view.Menu;
-import android.view.MenuItem;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import com.example.rehapp.SaveSharedPreferences;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
@@ -41,16 +38,25 @@ public class Home extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Intent intent=getIntent();
         Bundle extras = intent.getExtras();
+        assert extras != null;
         int tmp = extras.getInt("redirect");
-        if(tmp==1){
-            bottomNavigationView.setSelectedItemId(R.id.navigation_calendar);
-            openFragment(CalendarFragment.newInstance());
-        }else if(tmp==3){
-            bottomNavigationView.setSelectedItemId(R.id.navigation_notify);
-            openFragment(NotifyFragment.newInstance());
-        }else if(tmp==0){
-            bottomNavigationView.setSelectedItemId(R.id.navigation_home);
-            openFragment(HomeFragment.newInstance());
+        switch (tmp){
+            case 0:
+                bottomNavigationView.setSelectedItemId(R.id.navigation_home);
+                openFragment(HomeFragment.newInstance());
+                break;
+            case 1:
+                bottomNavigationView.setSelectedItemId(R.id.navigation_calendar);
+                openFragment(CalendarFragment.newInstance());
+                break;
+            case 2:
+                bottomNavigationView.setSelectedItemId(R.id.navigation_report);
+                openFragment(ReportFragment.newInstance());
+                break;
+            case 3:
+                bottomNavigationView.setSelectedItemId(R.id.navigation_notify);
+                openFragment(NotifyFragment.newInstance());
+                break;
         }
     }
     
@@ -65,11 +71,30 @@ public class Home extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_settings) {
             Intent i = new Intent(this,SettingsActivity.class);
+            int n=bottomNavigationView.getSelectedItemId();
+            int red=0;
+            switch (n) {
+                case R.id.navigation_home:
+                    red=0;
+                    break;
+                case R.id.navigation_calendar:
+                    red=1;
+                    break;
+                case R.id.navigation_report:
+                    red=2;
+                    break;
+                case R.id.navigation_notify:
+                    red=3;
+                    break;
+            }
+            i.putExtra("redirect", red);
             startActivity(i);
+            finish();
         }else if(item.getItemId() == R.id.action_logout){
             SaveSharedPreferences.clearData(this);
             Intent i = new Intent(this, LogActivity.class);
             startActivity(i);
+            finish();
         }
         return true;
     }

@@ -33,11 +33,11 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
-public class EnduranceActivityL extends AppCompatActivity {
+public class EnduranceActivityM extends AppCompatActivity {
 
     private static final long COUNTDOWN_TO_START = 4000; // 4 sec
     private static final long COUNTDOWN_WARMUP = 21000; //301000 5 min
-    private static final long COUNTDOWN_REST = 11000; //61000 1 min
+    private static final long COUNTDOWN_REST = 11000; //121000 2 min
     private static final long COUNTDOWN_COOLDOWN = 21000; //301000 5 min
 
     Context ctx=this;
@@ -54,7 +54,6 @@ public class EnduranceActivityL extends AppCompatActivity {
     private TextView txt3;
     private TextView txt4;
     private TextView txt5;
-    private TextView txt6;
     private TextView txt7;
     private TextView txt8;
     private TextView txt9;
@@ -88,38 +87,37 @@ public class EnduranceActivityL extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_endurancel);
+        setContentView(R.layout.activity_endurancem);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         exercizeList= TrainingMaker.getInstance().getNewExercizeList("E", 5);
 
-        Toolbar toolbar = findViewById(R.id.toolbar31);
-        buttonStart = findViewById(R.id.buttonStart1);
-        buttonPauseResume = findViewById(R.id.buttonPauseResume1);
-        buttonStop = findViewById(R.id.buttonStop1);
-        timerTextView = findViewById(R.id.textView151);
-        cardView = findViewById(R.id.dati1);
-        chronometer = findViewById(R.id.cronometer1);
-        txt1=findViewById(R.id.endu1);
-        txt2=findViewById(R.id.endu2);
-        txt3=findViewById(R.id.endu3);
-        txt4=findViewById(R.id.endu4);
-        txt5=findViewById(R.id.endu5);
-        txt6=findViewById(R.id.endu6);
-        txt7=findViewById(R.id.endu7);
-        txt8=findViewById(R.id.endu8);
-        txt9=findViewById(R.id.endu9);
-        div1=findViewById(R.id.divider1);
-        div2=findViewById(R.id.divider31);
-        buttonSave =findViewById(R.id.buttonSave1);
-        buttonDelete =findViewById(R.id.buttonDelete1);
-        time=findViewById(R.id.textView41);
-        desc=findViewById(R.id.textView51);
-        txtsave=findViewById(R.id.saveText);
-        txtDelete=findViewById(R.id.deleteText);
-        info=findViewById(R.id.infoTot);
-        info1=findViewById(R.id.infoTot1l);
-        image=findViewById(R.id.exPicL);
+        Toolbar toolbar = findViewById(R.id.toolbar31m);
+        buttonStart = findViewById(R.id.buttonStart1m);
+        buttonPauseResume = findViewById(R.id.buttonPauseResume1m);
+        buttonStop = findViewById(R.id.buttonStop1m);
+        timerTextView = findViewById(R.id.textView151m);
+        cardView = findViewById(R.id.dati1m);
+        chronometer = findViewById(R.id.cronometer1m);
+        txt1=findViewById(R.id.endu1m);
+        txt2=findViewById(R.id.endu2m);
+        txt3=findViewById(R.id.endu3m);
+        txt4=findViewById(R.id.endu4m);
+        txt5=findViewById(R.id.endu5m);
+        txt7=findViewById(R.id.endu7m);
+        txt8=findViewById(R.id.endu8m);
+        txt9=findViewById(R.id.endu9m);
+        div1=findViewById(R.id.divider1m);
+        div2=findViewById(R.id.divider31m);
+        buttonSave =findViewById(R.id.buttonSave1m);
+        buttonDelete =findViewById(R.id.buttonDelete1m);
+        time=findViewById(R.id.textView41m);
+        desc=findViewById(R.id.textView51m);
+        txtsave=findViewById(R.id.saveTextm);
+        txtDelete=findViewById(R.id.deleteTextm);
+        info=findViewById(R.id.infoTotm);
+        info1=findViewById(R.id.infoTot1lm);
+        image=findViewById(R.id.exPicLm);
 
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Allenamento di resistenza");
@@ -456,7 +454,6 @@ public class EnduranceActivityL extends AppCompatActivity {
         txt3.setVisibility(View.INVISIBLE);
         txt4.setVisibility(View.INVISIBLE);
         txt5.setVisibility(View.INVISIBLE);
-        txt6.setVisibility(View.INVISIBLE);
         txt7.setVisibility(View.INVISIBLE);
         txt8.setVisibility(View.INVISIBLE);
         txt9.setVisibility(View.INVISIBLE);

@@ -34,10 +34,10 @@ import java.util.Objects;
 public class EnduranceActivityH extends AppCompatActivity {
 
     private static final long COUNTDOWN_TO_START = 4000;
-    private static final long COUNTDOWN_WARMUP = 21000; //301000 5 min
+    private static final long COUNTDOWN_WARMUP = 21000; //241000 4 min
     private static final long COUNTDOWN_REST = 11000; //61000 1 min
-    private static final long COUNTDOWN_COOLDOWN = 21000; //301000 5 min
-    private static final long COUNTDOWN_ACTIVITY = 21000; //181000 3 min
+    private static final long COUNTDOWN_COOLDOWN = 21000; //241000 5 min
+    private static final long COUNTDOWN_ACTIVITY = 181000; //181000 3 min
 
     Context ctx=this;
 
@@ -56,6 +56,7 @@ public class EnduranceActivityH extends AppCompatActivity {
     private TextView txt7;
     private TextView txt8;
     private TextView txt9;
+    private TextView txt10;
     private TextView txtsave;
     private TextView txtDelete;
     private View div1;
@@ -105,6 +106,7 @@ public class EnduranceActivityH extends AppCompatActivity {
         txt7=findViewById(R.id.endu7h);
         txt8=findViewById(R.id.endu8h);
         txt9=findViewById(R.id.endu9h);
+        txt10=findViewById(R.id.endu9h2);
         div1=findViewById(R.id.divider1h);
         div2=findViewById(R.id.divider31h);
         buttonSave =findViewById(R.id.buttonSave1h);
@@ -306,6 +308,7 @@ public class EnduranceActivityH extends AppCompatActivity {
         txt7.setVisibility(View.INVISIBLE);
         txt8.setVisibility(View.INVISIBLE);
         txt9.setVisibility(View.INVISIBLE);
+        txt10.setVisibility(View.INVISIBLE);
         div1.setVisibility(View.INVISIBLE);
         div2.setVisibility(View.INVISIBLE);
         txtsave.setVisibility(View.VISIBLE);
@@ -320,7 +323,7 @@ public class EnduranceActivityH extends AppCompatActivity {
     private void saveActivity(){
         DAO m=new DAO();
 
-        if(stepNum==2||stepNum==5){
+        if(stepNum==2||stepNum==5 || stepNum==6){
             totalTimeCount+=(COUNTDOWN_COOLDOWN-mTimeLeftInMilliseconds)/1000;
         }else if(restToDO) {
             totalTimeCount+=(COUNTDOWN_ACTIVITY-mTimeLeftInMilliseconds)/1000;
@@ -355,6 +358,7 @@ public class EnduranceActivityH extends AppCompatActivity {
     }
 
     public void nextStep(){
+        String txt;
         switch(stepNum){
             case 0: //inizia l'allenamento
                 //time.setVisibility(View.VISIBLE);
@@ -396,7 +400,7 @@ public class EnduranceActivityH extends AppCompatActivity {
                 if(start){
                     repNum++;
                     start=false;
-                    if(repNum==3){ //sono arrivato all'ultima ripetizione
+                    if(repNum==6){ //sono arrivato all'ultima ripetizione
                         stepNum++;
                     }
                     descText="Attività "+repNum;
@@ -416,6 +420,8 @@ public class EnduranceActivityH extends AppCompatActivity {
                     //totalTimeCount+=(COUNTDOWN_ACTIVITY-1000)/1000;
                     timet="Tempo totale: "+totalTimeCount +" sec";
                     time.setText(timet);
+                    //txt="0"+COUNTDOWN_ACTIVITY/60000+":00";
+                    //timerTextView.setText(txt);
                     buttonStart.setVisibility(View.VISIBLE);
                     buttonPauseResume.setVisibility(View.INVISIBLE);
                     buttonStop.setVisibility(View.INVISIBLE);
@@ -432,11 +438,38 @@ public class EnduranceActivityH extends AppCompatActivity {
                     totalTimeCount+=(COUNTDOWN_REST-1000)/1000;
                     timet="Tempo totale: "+totalTimeCount +" sec";
                     time.setText(timet);
+                    restToDO=false;
+                    start=false;
                     resumeTimer();
                 }else{
                     descText="Defaticamento";
                     desc.setText(descText);
                     image.setImageResource(exercizeList.get(2).getImageId());
+                    //txt="0"+COUNTDOWN_COOLDOWN+":00";
+                    //timerTextView.setText(txt);
+                    buttonStart.setVisibility(View.VISIBLE);
+                    buttonPauseResume.setVisibility(View.INVISIBLE);
+                    buttonStop.setVisibility(View.INVISIBLE);
+                }
+                break;
+            case 5:
+                if(start){
+                    buttonStop.setText(R.string.stop);
+                    buttonStart.setVisibility(View.INVISIBLE);
+                    buttonPauseResume.setVisibility(View.VISIBLE);
+                    buttonStop.setVisibility(View.VISIBLE);
+                    mTimeLeftInMilliseconds=COUNTDOWN_COOLDOWN;
+                    stepNum++;
+                    resumeTimer();
+                }else{
+                    descText="Stretching";
+                    desc.setText(descText);
+                    image.setImageResource(exercizeList.get(3).getImageId());
+                    totalTimeCount+=(COUNTDOWN_COOLDOWN-1000)/1000;
+                    timet="Tempo totale: "+totalTimeCount +" sec";
+                    time.setText(timet);
+                    //txt="0"+COUNTDOWN_COOLDOWN+":00";
+                    //timerTextView.setText(txt);
                     buttonStart.setVisibility(View.VISIBLE);
                     buttonPauseResume.setVisibility(View.INVISIBLE);
                     buttonStop.setVisibility(View.INVISIBLE);

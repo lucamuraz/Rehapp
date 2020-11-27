@@ -3,7 +3,6 @@ package com.example.rehapp.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +28,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
 
 public class CalendarFragment extends Fragment implements ActivityAdapter.ItemClickListener{
@@ -121,6 +119,7 @@ public class CalendarFragment extends Fragment implements ActivityAdapter.ItemCl
             startActivity(i);
         }else{
             Intent i=new Intent(ctx, Home.class);
+            i.putExtra("redirect", 0);
             startActivity(i);
             requireActivity().finish();
         }

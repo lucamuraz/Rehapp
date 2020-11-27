@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/b">
@@ -24,7 +23,7 @@
         android:layout_marginBottom="45dp"
         android:background="@drawable/circle"
         android:fontFamily="sans-serif-light"
-        android:text="INIZIA"
+        android:text="@string/inizia"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -82,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="438dp"
         android:layout_marginBottom="204dp"
-        android:text="10"
+        android:text="@string/_10"
         android:textColor="@android:color/black"
         android:textSize="70sp"
         android:visibility="invisible"
@@ -118,7 +117,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/todo" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/dati1h"
@@ -176,7 +176,7 @@
                 android:layout_marginTop="48dp"
                 android:layout_marginEnd="107dp"
                 android:layout_marginBottom="416dp"
-                android:text="@string/forza1"
+                android:text="@string/enduH"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -312,8 +312,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginHorizontal="15dp"
-                android:layout_marginTop="402dp"
-                android:layout_marginBottom="80dp"
+                android:layout_marginTop="393dp"
+                android:layout_marginBottom="89dp"
                 android:background="?android:attr/listDivider"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -326,10 +326,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
-                android:layout_marginTop="415dp"
+                android:layout_marginTop="436dp"
                 android:layout_marginEnd="135dp"
-                android:layout_marginBottom="48dp"
+                android:layout_marginBottom="28dp"
                 android:text="@string/forza9"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/endu9h2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="408dp"
+                android:layout_marginEnd="138dp"
+                android:layout_marginBottom="56dp"
+                android:text="@string/endu8hh"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -380,7 +396,8 @@
 
                 android:src="@drawable/ic_info_foreground"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/todo" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -392,7 +409,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
-        android:text="Tempo totale"
+        android:text="@string/tempo_totale"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -404,7 +421,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="Pronto ad inziare"
+        android:text="@string/pronto_ad_inziare"
         android:textAlignment="center"
         android:textSize="30sp"
         android:visibility="invisible"
@@ -426,6 +443,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/todo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,9 +5,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_logo1_round"
+        android:icon="@mipmap/ic_logo_round"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_logo1_round"
+        android:roundIcon="@mipmap/ic_logo_round"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
@@ -22,6 +22,9 @@
             android:screenOrientation="portrait">
         </activity>
         <activity android:name=".Activity.EnduranceActivityL"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Activity.EnduranceActivityM"
             android:screenOrientation="portrait">
         </activity>
         <activity android:name=".Activity.StrengthActivity"

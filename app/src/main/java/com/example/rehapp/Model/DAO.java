@@ -121,6 +121,7 @@ public class DAO {
                     }
                 }
                 writeActivitiesToFile(activityList, ctx);
+                AppManager.getInstance().setCurrentWeek();
                 myRef.removeEventListener(this);
 
             }
@@ -278,7 +279,6 @@ public class DAO {
                     saveLogin(username, context);
                     getActivity(username, context);
                     getRemainder(username, context);
-                    AppManager.getInstance().setCurrentWeek();
                     Intent i = new Intent(context, Home.class);
                     i.putExtra("redirect", 0);
                     context.startActivity(i);
