@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -187,12 +186,14 @@ public class AppManager {
         Date dateobj = new Date();
         String date1 =format.format(dateobj);
         days = new String[7];
+        int delta;
         if(now.get(GregorianCalendar.DAY_OF_WEEK)==1){
-            int delta=-6;
+            delta=-6;
         }else{
-            int delta= -(now.get(GregorianCalendar.DAY_OF_WEEK))+2;
-            now.add(Calendar.DAY_OF_MONTH, delta );
+            delta= -(now.get(GregorianCalendar.DAY_OF_WEEK))+2;
+
         }
+        now.add(Calendar.DAY_OF_MONTH, delta );
         for (int i = 0; i < 7; i++)
         {
             days[i] = format.format(now.getTime());

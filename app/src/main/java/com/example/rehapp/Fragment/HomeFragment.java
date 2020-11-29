@@ -67,7 +67,7 @@ public class HomeFragment extends Fragment {
             String value=AppManager.getInstance().getWeek()[i];
             int day=AppManager.getInstance().getDayWeek();
             if(day==i){
-                weekTxt.get(i).setTextColor(getResources().getColor(R.color.colorPrimary));
+                weekTxt.get(i).setTextColor(getResources().getColor(R.color.colorPrimaryDark));
                 weekTxt.get(i).setTypeface(Typeface.DEFAULT_BOLD);
             }
             switch (value){
