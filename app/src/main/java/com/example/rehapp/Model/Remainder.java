@@ -29,6 +29,9 @@ public class Remainder {
         this.date = date;
     }
 
+    public String getHour(){ return hour;}
+    public void setHour(String hour){ this.hour=hour; }
+
 
     public String getInfo(){
         return date+" - "+hour;

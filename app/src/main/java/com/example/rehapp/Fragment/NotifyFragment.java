@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,8 +27,13 @@ import java.util.List;
 
 public class NotifyFragment extends Fragment {
 
-    List<Remainder> remainderList = new ArrayList<>();
+    List<Remainder> remainderList = new ArrayList<Remainder>();
     RecyclerView recyclerView;
+    CardView card;
+    ImageView expand;
+    ConstraintLayout l;
+    private int height;
+    private int minHeight;
 
     public NotifyFragment() {
         // Required empty public constructor
@@ -60,7 +67,7 @@ public class NotifyFragment extends Fragment {
         //TODO lista gia presente:
         remainderList = AppManager.getInstance().getRemainderList(); // prendo la lista piena
         if(remainderList != null){
-            RemainderAdapter adapter = new RemainderAdapter(remainderList); // la visulizzo con l'adpter
+            RemainderAdapter adapter = new RemainderAdapter(remainderList, floatingActionButton); // la visulizzo con l'adpter
             ImageView image = rootView.findViewById(R.id.icona);
             TextView text = rootView.findViewById(R.id.testo);
             text.setVisibility(View.INVISIBLE);

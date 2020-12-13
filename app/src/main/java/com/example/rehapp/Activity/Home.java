@@ -92,7 +92,7 @@ public class Home extends AppCompatActivity {
             finish();
         }else if(item.getItemId() == R.id.action_logout){
             SaveSharedPreferences.clearData(this);
-            Intent i = new Intent(this, LogActivity.class);
+            Intent i = new Intent(this, MainActivity.class);
             startActivity(i);
             finish();
         }

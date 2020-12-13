@@ -174,8 +174,8 @@ public class DAO {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 map =(Map<String, Object>) snapshot.getValue();
-                assert map != null;
-                Log.i(TAG,map.toString());
+//                assert map != null;
+//                Log.i(TAG,map.toString());
                 if(map != null){
                     String titolo;
                     String data = "";
@@ -287,6 +287,7 @@ public class DAO {
                     AlertDialog alert = builder.create();
                     alert.setTitle("OPS!");
                     alert.show();
+
                 }
                 myRef.removeEventListener(this);
             }

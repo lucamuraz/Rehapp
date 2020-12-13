@@ -35,7 +35,7 @@
     <string name="inserisci_il_tuo_edss">Inserisci il tuo EDSS</string>
     <string name="scala_dello_stato_di_disabilit_espansa">Scala dello stato di disabilità espansa</string>
     <string name="expanded_disability_status_scale">Expanded Disability Status Scale</string>
-    <string name="l_edss_la_la_scala_di_stato_di_disabilit_espansa_questo_un_valore_che_deve_essere_stabilito_dal_proprio_meidco_curante">L\'EDSS è la scala di stato di disabilità espansa. Questo è un valore che deve essere stabilito dal proprio meidco curante.</string>
+    <string name="edssExp">L\'EDSS è la scala di stato di disabilità espansa. Questo è un valore che deve essere stabilito dal proprio meidco curante.</string>
     <string name="crea_il_tuo_account">Crea il tuo account</string>
     <string name="la_tue_et">La tue età</string>
     <string name="la_tua_email">La tua email</string>

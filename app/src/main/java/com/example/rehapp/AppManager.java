@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 
+import com.example.rehapp.Fragment.RegFragment;
+import com.example.rehapp.Fragment.RegFragment2;
 import com.example.rehapp.Model.Activity;
 import com.example.rehapp.Model.DAO;
 import com.example.rehapp.Model.MonthReport;
@@ -35,6 +37,37 @@ public class AppManager {
     private Context ctx;
     private int dayOfWeek;
 
+    private RegFragment reg;
+    private RegFragment2 reg2;
+
+    public void setReg(RegFragment fr){
+        reg=fr;
+    }
+    public void setReg2(RegFragment2 fr){
+        reg2=fr;
+    }
+    public RegFragment getReg(){ return reg; }
+    public RegFragment2 getReg2(){ return reg2; }
+
+    private String[] tmpData=new String [5];
+
+    public String getTmpUsername(){
+        if(tmpData[0]!=null && tmpData[1]!=null){
+            String tmp1=tmpData[0].toLowerCase();
+            String tmp2=tmpData[1].toLowerCase();
+            tmpData[2]=tmp1+"_"+tmp2;
+        }
+        return tmpData[2];
+    }
+
+    public void saveTmpData(String data, int idx){
+        tmpData[idx]=data;
+    }
+
+    public String getTmpData(int idx){
+        return tmpData[idx];
+    }
+
     public static AppManager getInstance() {
         if (singleInstance == null) {
             singleInstance = new AppManager();
@@ -55,7 +88,11 @@ public class AppManager {
 
     public String getTotalAct(){
         String res="";
-        res+=activityList.size();
+        if(activityList.isEmpty()){
+            res="0";
+        }else{
+            res+=activityList.size();
+        }
         return res;
     }
 

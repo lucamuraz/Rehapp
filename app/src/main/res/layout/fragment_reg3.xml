@@ -42,7 +42,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="17dp"
-                    android:layout_marginLeft="17dp"
                     android:layout_marginTop="40dp"
                     android:layout_marginEnd="273dp"
                     android:layout_marginRight="273dp"
@@ -66,7 +65,8 @@
                     app:layout_constraintStart_toEndOf="@+id/minore"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_keyboard_arrow_left_24px"
-                    app:tint="@color/colorBtn" />
+                    app:tint="@color/colorBtn"
+                    android:rotation="270"/>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -91,18 +91,21 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
+            android:id="@+id/reg3Back"
             android:layout_width="30dp"
-            android:layout_height="32dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="160dp"
+            android:layout_marginEnd="298dp"
+            android:layout_marginBottom="538dp"
             android:background="#FFFFFF"
             android:contentDescription="@string/todo"
             android:src="@drawable/abc_vector_test"
             android:tint="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.18"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.23000002" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

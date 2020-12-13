@@ -38,6 +38,7 @@ public class Splash extends AppCompatActivity {
             readActivityFromFile(this);
             readRemainderFromFile(this);
         }
+
         Thread timer=new Thread()
         {
             public void run() {
