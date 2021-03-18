@@ -1,0 +1,25 @@
+- Medici
+    - Codice_Medico
+        Password : aaaaaaa
+- Utenti
+    - Codice_utente
+        Password : aaaaaaa
+        Nome : xxxxx
+        EDSS : nn
+        - Attività
+            - Allenamento
+                - Codice_allenamento
+                    Data : dd/mm/yyyy
+                    Durata : hh:mm
+                    Tipologia : Resistenza/Forza
+                    Titolo : cccccccccc
+            - Seduta riabilitativa
+                - Codice_seduta
+                    Data : dd/mm/yyyy
+                    Durata : hh:mm
+                    Tipologia : Standard
+                    Titolo : cccccccccc
+        - Promemoria
+            - Titolo
+                Data : dd/mm/yyyy
+                Orario : hh:mm

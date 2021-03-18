@@ -1,11 +1,10 @@
 package com.example.rehapp.Activity;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.AsyncTask;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,12 +15,12 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.preference.EditTextPreference;
 
 import com.example.rehapp.AppManager;
 import com.example.rehapp.Model.Activity;
@@ -53,8 +52,10 @@ public class ActivityEdit extends AppCompatActivity {
 
     List<String> categoryElmts;
     List<String> typeElmts;
+    List<String> typeElmts1;
     private Context ctx=this;
     private Activity activity;
+    private boolean changed=false;
     AlertDialog dialog;
     AlertDialog.Builder builder;
     final Calendar calendar=Calendar.getInstance();
@@ -72,6 +73,9 @@ public class ActivityEdit extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent i = new Intent(ctx, Home.class);
+                i.putExtra("redirect", 1);
+                startActivity(i);
                 finish();
             }
         });
@@ -118,12 +122,37 @@ public class ActivityEdit extends AppCompatActivity {
                     act_dat.setVisibility(View.INVISIBLE);
                     act_dur.setVisibility(View.INVISIBLE);
                     act_cat.setVisibility(View.INVISIBLE);
-                }else {
-                    activity.setData(act_dat_new.getText().toString());
-                    activity.setTitolo(act_tit_new.getText().toString());
-                    activity.setDurata(act_dur_new.getText().toString());
-                    activity.setCategoria(act_cat_new.getSelectedItem().toString());
-                    activity.setTipologia(act_tip_new.getSelectedItem().toString());
+                }else {     //prima di effettuare la modifica controllo se effettivamente è stato cambiato qualcosa
+                    if(!activity.getData().equals(act_dat_new.getText().toString())){
+                        activity.setData(act_dat_new.getText().toString());
+                        changed=true;
+                    }
+                    if(!activity.getTitolo().equals(act_tit_new.getText().toString())){
+                        activity.setTitolo(act_tit_new.getText().toString());
+                        changed=true;
+                    }
+                    if(!activity.getDurata().equals(act_dur_new.getText().toString())){
+                        activity.setDurata(act_dur_new.getText().toString());
+                        changed=true;
+                    }
+                    if(!activity.getCategoria().equals(act_cat_new.getSelectedItem().toString())){
+                        activity.setCategoria(act_cat_new.getSelectedItem().toString());
+                        changed=true;
+                    }
+                    if(!activity.getTipologia().equals(act_tip_new.getSelectedItem().toString())){
+                        activity.setTipologia(act_tip_new.getSelectedItem().toString());
+                        changed=true;
+                    }
+
+                    if(changed){
+                        //todo
+                        AppManager.getInstance().editActivity(activity, ctx);
+                        act_cat.setText(activity.getCategoria());
+                        act_tit.setText(activity.getTitolo());
+                        act_tip.setText(activity.getTipologia());
+                        act_dat.setText(activity.getData());
+                        act_dur.setText(activity.getDurata());
+                    }
                     edit.setText(R.string.modifica);
                     delete.setText(R.string.elimina);
                     act_cat_new.setVisibility(View.INVISIBLE);
@@ -136,8 +165,6 @@ public class ActivityEdit extends AppCompatActivity {
                     act_dat.setVisibility(View.VISIBLE);
                     act_dur.setVisibility(View.VISIBLE);
                     act_cat.setVisibility(View.VISIBLE);
-
-                    AppManager.getInstance().editActivity(activity, ctx);
                 }
             }
         });
@@ -151,7 +178,15 @@ public class ActivityEdit extends AppCompatActivity {
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-
+                            //todo gestire eliminazione
+                            AppManager.getInstance().deleteActivity(activity, ctx);
+                            String toastMessage = "Attività eliminata";
+                            Toast mToast = Toast.makeText(ctx, toastMessage, Toast.LENGTH_LONG);
+                            mToast.show();
+                            Intent i2 = new Intent(ctx, Home.class);
+                            i2.putExtra("redirect", 1);
+                            startActivity(i2);
+                            finish();
                         }
                     });
                     builder.setNegativeButton("Annulla", new DialogInterface.OnClickListener() {
@@ -183,19 +218,20 @@ public class ActivityEdit extends AppCompatActivity {
 
         categoryElmts=new ArrayList<>();
         typeElmts= new ArrayList<>();
+        typeElmts1= new ArrayList<>();
+        typeElmts.add("Standard");
         if(activity.getCategoria().equals("Seduta riabilitativa")){
             categoryElmts.add("Seduta riabilitativa");
             categoryElmts.add("Allenamento");
-            typeElmts.add("Standard");
         }else{
             categoryElmts.add("Allenamento");
             categoryElmts.add("Seduta riabilitativa");
             if(activity.getTipologia().equals("Resistenza")){
-                typeElmts.add("Resistenza");
-                typeElmts.add("Forza");
+                typeElmts1.add("Resistenza");
+                typeElmts1.add("Forza");
             }else{
-                typeElmts.add("Forza");
-                typeElmts.add("Resistenza");
+                typeElmts1.add("Forza");
+                typeElmts1.add("Resistenza");
             }
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
@@ -211,17 +247,16 @@ public class ActivityEdit extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(act_cat_new.getSelectedItem().equals("Seduta riabilitativa")){
-                    typeElmts= new ArrayList<>();
-                    typeElmts.add("Standard");
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                                ctx, android.R.layout.simple_spinner_item, typeElmts);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        act_tip_new.setAdapter(adapter);
                 }else if(act_cat_new.getSelectedItem().equals("Allenamento")){
-                    typeElmts= new ArrayList<>();
-                    typeElmts.add("Resistenza");
-                    typeElmts.add("Forza");
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                                ctx, android.R.layout.simple_spinner_item, typeElmts1);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        act_tip_new.setAdapter(adapter);
                 }
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                        ctx, android.R.layout.simple_spinner_item, typeElmts);
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                act_tip_new.setAdapter(adapter);
             }
 
             @Override

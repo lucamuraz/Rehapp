@@ -58,15 +58,12 @@ public class SettingsActivity extends AppCompatActivity {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
             Objects.requireNonNull(getPreferenceScreen().findPreference("user")).setSummary(SaveSharedPreferences.getUser(ctx));
             Objects.requireNonNull(getPreferenceScreen().findPreference("name")).setSummary(SaveSharedPreferences.getUserName(ctx));
-            Objects.requireNonNull(getPreferenceScreen().findPreference("surname")).setSummary(SaveSharedPreferences.getUserSurname(ctx));
-            Objects.requireNonNull(getPreferenceScreen().findPreference("email")).setSummary(SaveSharedPreferences.getUserEmail(ctx));
-
             Objects.requireNonNull(getPreferenceScreen().findPreference("Licenses")).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     Intent i = new Intent(ctx, LicenseActivity.class);
                     startActivity(i);
-                    return false;
+                    return true;
                 }
             });
 
@@ -76,7 +73,7 @@ public class SettingsActivity extends AppCompatActivity {
                 public boolean onPreferenceClick(Preference preference) {
                     Intent i = new Intent(ctx, TermsActivity.class);
                     startActivity(i);
-                    return false;
+                    return true;
                 }
             });
 

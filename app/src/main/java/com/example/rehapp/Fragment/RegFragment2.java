@@ -19,7 +19,6 @@ import com.example.rehapp.R;
 public class RegFragment2 extends Fragment {
 
     TextView username;
-    EditText email;
     EditText password;
     RegFragment2 fr=this;
 
@@ -30,7 +29,7 @@ public class RegFragment2 extends Fragment {
         final ImageButton back=view.findViewById(R.id.imageButton);
         final Button prosegui = view.findViewById(R.id.Prosegui);
         username = view.findViewById(R.id.Username);
-        String tmpUser= AppManager.getInstance().getTmpUsername();
+        final String tmpUser= AppManager.getInstance().getTmpUsername();
         username.setText(tmpUser);
 
         prosegui.setOnClickListener(new View.OnClickListener() {
@@ -38,9 +37,7 @@ public class RegFragment2 extends Fragment {
             public void onClick(View v) {
                 FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
                 //TODO interagire con il database
-                email = requireActivity().findViewById(R.id.Email);
                 password = requireActivity().findViewById(R.id.Password);
-                String e = email.getText().toString();
                 String p = password.getText().toString();
                 //TODO passare al secondo fragment
                 AppManager.getInstance().setReg2(fr);
@@ -48,7 +45,7 @@ public class RegFragment2 extends Fragment {
                 transaction.replace(R.id.fragment, fragment3);
                 transaction.commit();
                 //TODO salvare le credenziali di accesso dell'utente
-                saveTmpData(e,p);
+                saveTmpData(p, tmpUser);
             }
         });
 
@@ -64,8 +61,7 @@ public class RegFragment2 extends Fragment {
         return view;
     }
 
-    private void saveTmpData(String email, String password){
-        AppManager.getInstance().saveTmpData(email, 3);
-        AppManager.getInstance().saveTmpData(password, 4);
+    private void saveTmpData(String password, String userName){
+        AppManager.getInstance().saveTmpData(password, 2);
     }
 }

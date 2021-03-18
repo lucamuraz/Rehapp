@@ -1,6 +1,7 @@
 package com.example.rehapp.Activity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -23,6 +24,12 @@ public class LicenseActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setTitle("Licenze e copyright");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left_24px);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         TextView textView = findViewById(R.id.text_terms);
         String text = "Licenza";

@@ -156,4 +156,7 @@
     <string name="endu3m">Almeno 15–20 minuti di attività a scelta tra le seguenti:</string>
     <string name="enduH">- 4 minuti riscaldamento</string>
     <string name="endu8hh">- 4 minuti cooldown</string>
+    <string name="informativa_sulla_privacy">
+        <a href="http://rehapp.it">Informativa sulla Privacy</a>
+    </string>
 </resources>

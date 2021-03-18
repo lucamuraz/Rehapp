@@ -77,8 +77,12 @@ public class CalendarFragment extends Fragment implements ActivityAdapter.ItemCl
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
                 String date;
-                if(i2<10){
+                if(i2<10 && i1<9){
+                    date="0"+i2+"/0"+(i1+1)+"/"+i;
+                }else if(i2<10){
                     date="0"+i2+"/"+(i1+1)+"/"+i;
+                }else if(i1<9){
+                    date=i2+"/0"+(i1+1)+"/"+i;
                 }else{
                     date=i2+"/"+(i1+1)+"/"+i;
                 }
@@ -117,6 +121,7 @@ public class CalendarFragment extends Fragment implements ActivityAdapter.ItemCl
             AppManager.getInstance().setActivity(act);
             Intent i=new Intent(ctx, ActivityEdit.class);
             startActivity(i);
+            requireActivity().finish();
         }else{
             Intent i=new Intent(ctx, Home.class);
             i.putExtra("redirect", 0);

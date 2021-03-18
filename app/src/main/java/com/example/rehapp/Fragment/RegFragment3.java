@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -44,15 +46,16 @@ public class RegFragment3 extends Fragment {
         final DAO m = new DAO();
         final Context ctx = this.getContext();
         final String nome = AppManager.getInstance().getTmpData(0);
-        final String cognome = AppManager.getInstance().getTmpData(1);
-        final String username = AppManager.getInstance().getTmpData(2);
-        final String email = AppManager.getInstance().getTmpData(3);
-        final String password = AppManager.getInstance().getTmpData(4);
+        final String username = AppManager.getInstance().getTmpData(1);
+        final String password = AppManager.getInstance().getTmpData(2);
+        final CheckBox checkBox=view.findViewById(R.id.checkBox);
 
         final CardView cardView = view.findViewById(R.id.card1); // card
         final TextView text = view.findViewById(R.id.minore); // testo
         final ImageView image = view.findViewById(R.id.run);  // icona
         final ImageView imageB = view.findViewById(R.id.reg3Back);  // icona back
+        final TextView link= view.findViewById(R.id.textView8);
+        link.setMovementMethod(LinkMovementMethod.getInstance());
 
         imageB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -291,8 +294,8 @@ public class RegFragment3 extends Fragment {
                     public void onClick(View v) {
                         String edss = input.getText().toString();
                         if(Integer.parseInt(edss)<10){
-                            m.register(nome,cognome,username,email,password,edss);
-                            saveLocalData(nome,cognome,username,email,password,edss, ctx);
+                            m.register(nome,username,password,edss);
+                            saveLocalData(nome,username,password,edss, ctx);
                             Intent i = new Intent(getActivity(), LogActivity.class);
                             startActivity(i);
                         }else{
@@ -307,8 +310,8 @@ public class RegFragment3 extends Fragment {
                 input.addTextChangedListener(new TextWatcher() {
                     @Override
                     public void afterTextChanged(Editable arg0) {
-                            avanti.setEnabled(true);
-                            avanti.setBackgroundResource(R.drawable.circle_y);
+                            //avanti.setEnabled(true);
+                            //avanti.setBackgroundResource(R.drawable.circle_y);
 
                     }
                     @Override
@@ -319,6 +322,18 @@ public class RegFragment3 extends Fragment {
                     }
                 });
 
+                checkBox.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(checkBox.isChecked()){
+                            avanti.setEnabled(true);
+                            avanti.setBackgroundResource(R.drawable.circle_y);
+                        }else{
+                            avanti.setEnabled(false);
+                            avanti.setBackgroundResource(R.drawable.cirlce_b);
+                        }
+                    }
+                });
 
             }
         });
@@ -326,13 +341,11 @@ public class RegFragment3 extends Fragment {
         return  view;
     }
 
-    public void saveLocalData(String nome, String cognome, String username, String email, String password, String edss, Context ctx){
+    public void saveLocalData(String nome, String username, String password, String edss, Context ctx){
         SaveSharedPreferences.setUser(ctx, username);
         SaveSharedPreferences.setUserName(ctx, nome);
         SaveSharedPreferences.setUserPassword(ctx, password);
         SaveSharedPreferences.setUserEdss(ctx, edss);
-        SaveSharedPreferences.setUserEmail(ctx, email);
-        SaveSharedPreferences.setUserSurname(ctx, cognome);
     }
 
 }

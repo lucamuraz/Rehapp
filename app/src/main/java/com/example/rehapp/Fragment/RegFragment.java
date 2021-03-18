@@ -20,7 +20,6 @@ import com.example.rehapp.R;
 public class RegFragment extends Fragment {
 
     EditText nome;
-    EditText cognome;
     RegFragment fr=this;
 
     @Override
@@ -29,14 +28,13 @@ public class RegFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_reg, container, false);
         final Button avanti = view.findViewById(R.id.Avanti);
         final ImageButton back=view.findViewById(R.id.backReg);
+        AppManager.getInstance().getTmpusernameFromDB();
         avanti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO interagire con il database
                 nome = requireActivity().findViewById(R.id.Nome);
-                cognome = requireActivity().findViewById(R.id.Cognome);
                 String n = nome.getText().toString().replace("/[\u2190-\u21FF]|[\u2600-\u26FF]|[\u2700-\u27BF]|[\u3000-\u303F]|[\u1F300-\u1F64F]|[\u1F680-\u1F6FF]/g", "");
-                String c = cognome.getText().toString();
                 //TODO passare al secondo fragment
                 AppManager.getInstance().setReg(fr);
                 FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
@@ -44,7 +42,7 @@ public class RegFragment extends Fragment {
                 transaction.replace(R.id.fragment, fragment2);
                 transaction.commit();
                 // TODO salvo nome e cognome dell'utente
-                saveTmpData(n,c);
+                saveTmpData(n);
             }
         });
 
@@ -60,9 +58,8 @@ public class RegFragment extends Fragment {
     }
 
 
-    private void saveTmpData(String nome, String cognome){
+    private void saveTmpData(String nome){
         AppManager.getInstance().saveTmpData(nome, 0);
-        AppManager.getInstance().saveTmpData(cognome, 1);
     }
 
 

@@ -56,16 +56,12 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".Activity.TermsActivity"
             android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Activity.SettingsActivity" />
         </activity>
         <activity android:name=".Activity.LicenseActivity"
             android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Activity.SettingsActivity" />
         </activity>
+        <activity android:name=".Activity.MonthReportActivity"
+            android:screenOrientation="portrait"/>
 
     </application>
 

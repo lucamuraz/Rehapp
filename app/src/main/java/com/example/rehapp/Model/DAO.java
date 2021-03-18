@@ -34,8 +34,6 @@ public class DAO {
     private List<Remainder> remainderList;
     String psw = null;
     String name ="";
-    String surname ="";
-    String email ="";
     String edss ="";
 
     public DAO(){
@@ -46,19 +44,18 @@ public class DAO {
         mDB = FirebaseDatabase.getInstance();
     }
 
-    public void register(String name, String surname,String username, String email, String password, String EDSS){
-        DatabaseReference ref = mDB.getReference("Utenti").child(username);
-        ref.setValue(username);
-        DatabaseReference myRef = mDB.getReference("Utenti").child(username).child("Nome");
+    public void register(String name, String userCode, String password, String EDSS){
+        DatabaseReference ref = mDB.getReference("Utenti").child(userCode);
+        ref.setValue(userCode);
+        DatabaseReference myRef = mDB.getReference("Utenti").child(userCode).child("Nome");
         myRef.setValue(name);
-        DatabaseReference myRef1 = mDB.getReference("Utenti").child(username).child("Cognome");
-        myRef1.setValue(surname);
-        DatabaseReference myRef2 = mDB.getReference("Utenti").child(username).child("Email");
-        myRef2.setValue(email);
-        DatabaseReference myRef3 = mDB.getReference("Utenti").child(username).child("Password");
+        DatabaseReference myRef3 = mDB.getReference("Utenti").child(userCode).child("Password");
         myRef3.setValue(password);
-        DatabaseReference myReF4 = mDB.getReference("Utenti").child(username).child("EDSS");
+        DatabaseReference myReF4 = mDB.getReference("Utenti").child(userCode).child("EDSS");
         myReF4.setValue(EDSS);
+        DatabaseReference myReF5 = mDB.getReference("Num_utenti");
+        long idx=AppManager.getInstance().getLastIdx();
+        myReF5.setValue(idx);
     }
 
     public void addActivity(String username, String categoria, String id, String type, String duration, String date, String title){
@@ -136,21 +133,6 @@ public class DAO {
     // crea un file contenente le attività dell'utente
     public void writeActivitiesToFile(List<Activity> list, Context context) {
         AppManager.getInstance().setActivityList(list);
-        StringBuilder data= new StringBuilder();
-        for (Activity act: list) {
-            data.append(act.toString()).append("\n");
-        }
-        try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("config.txt", Context.MODE_PRIVATE));
-            outputStreamWriter.write(data.toString());
-            outputStreamWriter.close();
-        }
-        catch (IOException e) {
-            Log.e("Exception", "File write failed: " + e.toString());
-        }
-    }
-
-    public void editActivitiesToFile(List<Activity> list, Context context) {
         StringBuilder data= new StringBuilder();
         for (Activity act: list) {
             data.append(act.toString()).append("\n");
@@ -262,12 +244,6 @@ public class DAO {
                         case "Nome":
                             name = p.getValue().toString();
                             break;
-                        case "Cognome":
-                            surname = p.getValue().toString();
-                            break;
-                        case "Email":
-                            email = p.getValue().toString();
-                            break;
                         case "EDSS":
                             edss = p.getValue().toString();
                             break;
@@ -299,10 +275,30 @@ public class DAO {
         });
     }
 
+    public void getNewId(){
+        final DatabaseReference myRef = mDB.getReference("Num_utenti");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                long id = (long) snapshot.getValue()+1;
+                Log.d("firebase", String.valueOf(snapshot.getValue()));
+                String idUser="000000000000"+ id;
+                Log.d("firebase", idUser);
+                String idUserNew=idUser.substring(idUser.length()-7);
+                AppManager.getInstance().saveTmpData(idUserNew,1);
+                AppManager.getInstance().setLastIdx(id);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
+
     private void saveLogin(String username, Context ctx){
         SaveSharedPreferences.setUserName(ctx, name);
-        SaveSharedPreferences.setUserSurname(ctx, surname);
-        SaveSharedPreferences.setUserEmail(ctx, email);
         SaveSharedPreferences.setUserPassword(ctx, psw);
         SaveSharedPreferences.setUserEdss(ctx, edss);
         SaveSharedPreferences.setUser(ctx, username);

@@ -7,8 +7,6 @@ import android.preference.PreferenceManager;
 public class SaveSharedPreferences{
 
     static final String PREF_USER_NAME= "name";
-    static final String PREF_USER_SURNAME= "surname";
-    static final String PREF_USER_EMAIL= "email";
     static final String PREF_USER_PSW= "password";
     static final String PREF_USER_EDSS= "EDSS";
     static final String PREF_USER= "user";
@@ -20,18 +18,6 @@ public class SaveSharedPreferences{
     public static void setUserName(Context ctx, String userName) {
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
         editor.putString(PREF_USER_NAME, userName);
-        editor.apply();
-    }
-
-    public static void setUserSurname(Context ctx, String userSurname) {
-        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
-        editor.putString(PREF_USER_SURNAME, userSurname);
-        editor.apply();
-    }
-
-    public static void setUserEmail(Context ctx, String userEmail) {
-        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
-        editor.putString(PREF_USER_EMAIL, userEmail);
         editor.apply();
     }
 
@@ -59,14 +45,6 @@ public class SaveSharedPreferences{
 
     public static String getUser(Context ctx) {
         return getSharedPreferences(ctx).getString(PREF_USER, "");
-    }
-
-    public static String getUserSurname(Context ctx) {
-        return getSharedPreferences(ctx).getString(PREF_USER_SURNAME, "");
-    }
-
-    public static String getUserEmail(Context ctx) {
-        return getSharedPreferences(ctx).getString(PREF_USER_EMAIL, "");
     }
 
     public static String getUserPassword(Context ctx) {

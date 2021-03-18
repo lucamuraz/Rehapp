@@ -13,12 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.rehapp.Model.MonthReport;
 import com.example.rehapp.R;
 
+import java.text.ParseException;
 import java.util.List;
 
 public class MonthReportAdapter extends
         RecyclerView.Adapter<MonthReportAdapter.ViewHolder> {
 
     private List<MonthReport> monthReportList;
+    final private ItemClickListener onClickListener;
 
     @NonNull
     @Override
@@ -55,7 +57,7 @@ public class MonthReportAdapter extends
     }
 
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener{
         // each data item is just a string in this case
         public TextView data;
         public TextView tempo;
@@ -72,11 +74,26 @@ public class MonthReportAdapter extends
             numero = v.findViewById(R.id.activity_secondLine2);
             time_icon = v.findViewById(R.id.reportTime_icon);
             activity_icon = v.findViewById(R.id.reportNum_icon);
+            v.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v){
+            int clickedPosition = getAdapterPosition();
+            try {
+                onClickListener.onListItemClick(clickedPosition);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    public MonthReportAdapter(List<MonthReport> monthReportList){
-        this.monthReportList = monthReportList;
+    public interface ItemClickListener {
+        void onListItemClick(int clickedItemIndex) throws ParseException;
     }
 
+    public MonthReportAdapter(List<MonthReport> monthReportList, ItemClickListener onClickListener){
+        this.monthReportList = monthReportList;
+        this.onClickListener= onClickListener;
+    }
 }

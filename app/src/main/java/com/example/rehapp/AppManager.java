@@ -10,10 +10,13 @@ import com.example.rehapp.Model.Activity;
 import com.example.rehapp.Model.DAO;
 import com.example.rehapp.Model.MonthReport;
 import com.example.rehapp.Model.Remainder;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.PieEntry;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -31,14 +34,20 @@ public class AppManager {
     private List<Remainder> remainderList;
     private String[] week = {"N","N","N","N","N","N","N"};
     private String[] days = new String[7];
+    private ArrayList<BarEntry> barEntries;
+    private ArrayList<PieEntry> pieEntries;
     private String lastId;
     private Activity activity;
     BottomNavigationView bottomNavigationView;
     private Context ctx;
     private int dayOfWeek;
+    private long lastIdx;
 
     private RegFragment reg;
     private RegFragment2 reg2;
+
+    public ArrayList<BarEntry> getRep1(){ return barEntries; }
+    public ArrayList<PieEntry> getRep2(){ return pieEntries; }
 
     public void setReg(RegFragment fr){
         reg=fr;
@@ -49,16 +58,25 @@ public class AppManager {
     public RegFragment getReg(){ return reg; }
     public RegFragment2 getReg2(){ return reg2; }
 
-    private String[] tmpData=new String [5];
+    private String[] tmpData=new String [3];
+
+    public long getLastIdx() {
+        return lastIdx;
+    }
+
+    public void setLastIdx(long lastIdx) {
+        this.lastIdx = lastIdx;
+    }
 
     public String getTmpUsername(){
-        if(tmpData[0]!=null && tmpData[1]!=null){
-            String tmp1=tmpData[0].toLowerCase();
-            String tmp2=tmpData[1].toLowerCase();
-            tmpData[2]=tmp1+"_"+tmp2;
-        }
-        return tmpData[2];
+        return tmpData[1];
     }
+
+    public void getTmpusernameFromDB(){
+        DAO m=new DAO();
+        m.getNewId();
+    }
+
 
     public void saveTmpData(String data, int idx){
         tmpData[idx]=data;
@@ -339,23 +357,60 @@ public class AppManager {
     }
 
     public void editActivity(Activity newActivity, Context context){
-        boolean found=false;
-        int i=0;
-        while(!found){
-            if(activityList.get(i).getId().equals(newActivity.getId())){
-                activityList.get(i).setTitolo(newActivity.getTitolo());
-                activityList.get(i).setData(newActivity.getData());
-                activityList.get(i).setCategoria(newActivity.getCategoria());
-                activityList.get(i).setTipologia(newActivity.getTipologia());
-                activityList.get(i).setDurata(newActivity.getDurata());
-                found=true;
-            }
-            i++;
-        }
         DAO m=new DAO();
         m.editActivity(activity, newActivity, SaveSharedPreferences.getUser(context));// modifica nel db
-        m.editActivitiesToFile(activityList, ctx);
+        m.writeActivitiesToFile(activityList, context);
         //todo file
         //todo db
     }
+
+    public void setMonthReport(String month, String year) throws ParseException {
+        int[] report = new int [31];
+        int[] report2 = new int [3];
+        Date date = new SimpleDateFormat("MMMM", Locale.ITALY).parse(month);
+        Calendar cal = Calendar.getInstance();
+        assert date != null;
+        cal.setTime(date);
+        SimpleDateFormat output= new SimpleDateFormat("MM", Locale.ITALY);
+        String m1=output.format(cal.getTime());
+        for (Activity act : activityList) {    //controllo la data dell'attività, se combacia con mese e anno specificato la considero, altrimenti no
+            if(act.getData().substring(3,5).equals(m1) && act.getData().substring(6).equals(year)){
+                int i = Integer.parseInt(act.getData().substring(0,2));
+                report[i]+=getTime(act.getDurata());
+                if(act.getCategoria().equals("Seduta riabilitativa")){
+                    report2[0]++;
+                }else{
+                    if(act.getTipologia().equals("Resistenza")){
+                        report2[1]++;
+                    }else if(act.getTipologia().equals("Forza")){
+                        report2[2]++;
+                    }
+                }
+            }
+        }
+        ArrayList<BarEntry> res1= new ArrayList<>();
+        for(int i=0; i<31; i++){
+            res1.add(new BarEntry(i+1, report[i]));
+        }
+        barEntries= res1;
+        ArrayList<PieEntry> res2= new ArrayList<>();
+        res2.add(new PieEntry(report2[0], "Sedute riabilitative"));
+        res2.add(new PieEntry(report2[1], "Allenamenti resistenza"));
+        res2.add(new PieEntry(report2[2], "Allenamenti forza"));
+        pieEntries=res2;
+    }
+
+    public void deleteActivity(Activity activity, Context context){
+        //tolgo la attività dalla lista
+        for(Iterator<Activity> it= activityList.iterator(); it.hasNext();){
+            Activity act=it.next();
+            if(act.getId().equals(activity.getId())){
+                it.remove();
+            }
+        }
+        DAO m=new DAO();
+        m.deleteActivity(activity, SaveSharedPreferences.getUser(context));   //elimino dal db
+        m.writeActivitiesToFile(activityList, context);    //rigenero il file
+    }
+
 }

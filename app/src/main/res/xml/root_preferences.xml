@@ -13,16 +13,6 @@
             app:title="@string/signature_name"
             app:useSimpleSummaryProvider="true" />
 
-        <Preference
-            app:key="surname"
-            app:title="@string/signature_surname"
-            app:useSimpleSummaryProvider="true" />
-
-        <Preference
-            app:key="email"
-            app:title="@string/email"
-            app:useSimpleSummaryProvider="true" />
-
         <EditTextPreference
             app:key="EDSS"
             app:title="@string/EDSS"
@@ -50,7 +40,7 @@
             app:title="Licenze e copiright" />
 
         <Preference app:key="Privacy policy"
-            app:title="Termini e condizioni" />
+            app:title="Informativa sulla privacy" />
 
     </PreferenceCategory>
 
