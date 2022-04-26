@@ -14,15 +14,18 @@
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
-            app:key="EDSS"
-            app:title="@string/EDSS"
-            app:useSimpleSummaryProvider="true" />
-
-        <EditTextPreference
             app:key="password"
             app:title="@string/password"
             app:summary="********"
             android:inputType="textPassword"/>
+
+        <EditTextPreference
+            app:key="EDSS"
+            app:title="@string/EDSS"
+            app:useSimpleSummaryProvider="true" />
+
+        <Preference app:key="Sistemi funzionali"
+            app:title="Sistemi funzionali" />
 
     </PreferenceCategory>
 

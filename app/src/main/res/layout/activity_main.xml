@@ -32,13 +32,13 @@
         android:layout_width="372dp"
         android:layout_height="180dp"
         android:contentDescription="@string/todo"
+        android:src="@drawable/logo_2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.135"
-        android:src="@drawable/logo_2"/>
+        app:layout_constraintVertical_bias="0.135" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

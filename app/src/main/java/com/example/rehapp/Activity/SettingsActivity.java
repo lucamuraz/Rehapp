@@ -7,7 +7,6 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import com.example.rehapp.AppManager;
@@ -56,50 +55,49 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
-            Objects.requireNonNull(getPreferenceScreen().findPreference("user")).setSummary(SaveSharedPreferences.getUser(ctx));
-            Objects.requireNonNull(getPreferenceScreen().findPreference("name")).setSummary(SaveSharedPreferences.getUserName(ctx));
-            Objects.requireNonNull(getPreferenceScreen().findPreference("Licenses")).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
-                    Intent i = new Intent(ctx, LicenseActivity.class);
-                    startActivity(i);
-                    return true;
-                }
+            getPreferenceScreen().findPreference("user").setSummary(SaveSharedPreferences.getUser(ctx));
+//            Objects.requireNonNull(getPreferenceScreen().findPreference("user")).setSummary(SaveSharedPreferences.getUser(ctx));
+//            Objects.requireNonNull(getPreferenceScreen().findPreference("name")).setSummary(SaveSharedPreferences.getUserName(ctx));
+            getPreferenceScreen().findPreference("name").setSummary(SaveSharedPreferences.getUserName(ctx));
+//            Objects.requireNonNull(getPreferenceScreen().findPreference("Licenses")).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            getPreferenceScreen().findPreference("Licenses").setOnPreferenceClickListener(preference -> {
+                Intent i = new Intent(ctx, LicenseActivity.class);
+                startActivity(i);
+                return true;
             });
 
-            Objects.requireNonNull(getPreferenceScreen().findPreference("Privacy policy")).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener(){
-
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
+//            Objects.requireNonNull(getPreferenceScreen().findPreference("Privacy policy")).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener(){
+                getPreferenceScreen().findPreference("Privacy policy").setOnPreferenceClickListener(preference -> {
                     Intent i = new Intent(ctx, TermsActivity.class);
                     startActivity(i);
                     return true;
-                }
-            });
+                });
 
-            Objects.requireNonNull(getPreferenceScreen().findPreference("EDSS")).setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                @Override
-                public boolean onPreferenceChange(Preference preference, Object newValue) {
+//            Objects.requireNonNull(getPreferenceScreen().findPreference("Sistemi funzionali")).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener(){
+                getPreferenceScreen().findPreference("Sistemi funzionali").setOnPreferenceClickListener(preference -> {
+                    Intent i = new Intent(ctx, FunctionalActivity.class);
+                    startActivity(i);
+                    return true;
+                });
+
+//            Objects.requireNonNull(getPreferenceScreen().findPreference("EDSS")).setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                getPreferenceScreen().findPreference("EDSS").setOnPreferenceChangeListener((preference, newValue) -> {
                     SaveSharedPreferences.setUserEdss(ctx, (String) newValue);
                     DAO m=new DAO();
                     m.saveNewEDSS((String) newValue, SaveSharedPreferences.getUser(ctx));
                     return true;
-                }
-            });
+                });
 
-            Objects.requireNonNull(getPreferenceScreen().findPreference("password")).setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                @Override
-                public boolean onPreferenceChange(Preference preference, Object newValue) {
+//            Objects.requireNonNull(getPreferenceScreen().findPreference("password")).setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                getPreferenceScreen().findPreference("password").setOnPreferenceChangeListener((preference, newValue) -> {
                     SaveSharedPreferences.setUserPassword(ctx, (String) newValue);
                     DAO m=new DAO();
                     m.saveNewPassword((String) newValue, SaveSharedPreferences.getUser(ctx));
                     return true;
-                }
-            });
+                });
 
-            Objects.requireNonNull(getPreferenceScreen().findPreference("Contatti")).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
+//            Objects.requireNonNull(getPreferenceScreen().findPreference("Contatti")).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                getPreferenceScreen().findPreference("Contatti").setOnPreferenceClickListener(preference -> {
                     Intent intent = new Intent(Intent.ACTION_SEND);
                     intent.setType("plain/text");
                     intent.putExtra(Intent.EXTRA_EMAIL, new String[] { "rehapp.unito@gmail.com" });
@@ -107,8 +105,7 @@ public class SettingsActivity extends AppCompatActivity {
                     intent.putExtra(Intent.EXTRA_TEXT, "");
                     startActivity(Intent.createChooser(intent, ""));
                     return false;
-                }
-            });
+                });
         }
     }
 }

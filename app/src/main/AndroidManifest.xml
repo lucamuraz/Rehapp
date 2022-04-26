@@ -37,7 +37,7 @@
         <activity android:name=".Activity.LogActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".Activity.Splash"
-            android:screenOrientation="portrait">
+            android:screenOrientation="fullSensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -55,6 +55,9 @@
         <activity android:name=".Activity.ExplainActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".Activity.TermsActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Activity.FunctionalActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity android:name=".Activity.LicenseActivity"

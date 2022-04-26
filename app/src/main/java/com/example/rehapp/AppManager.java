@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.example.rehapp.Fragment.RegFragment;
 import com.example.rehapp.Fragment.RegFragment2;
+import com.example.rehapp.Fragment.RegFragment3;
 import com.example.rehapp.Model.Activity;
 import com.example.rehapp.Model.DAO;
 import com.example.rehapp.Model.MonthReport;
@@ -45,6 +46,7 @@ public class AppManager {
 
     private RegFragment reg;
     private RegFragment2 reg2;
+    private RegFragment3 reg3;
 
     public ArrayList<BarEntry> getRep1(){ return barEntries; }
     public ArrayList<PieEntry> getRep2(){ return pieEntries; }
@@ -55,8 +57,12 @@ public class AppManager {
     public void setReg2(RegFragment2 fr){
         reg2=fr;
     }
+    public void setReg3(RegFragment3 fr){
+        reg3=fr;
+    }
     public RegFragment getReg(){ return reg; }
     public RegFragment2 getReg2(){ return reg2; }
+    public RegFragment3 getReg3() { return reg3; }
 
     private String[] tmpData=new String [3];
 
@@ -76,7 +82,6 @@ public class AppManager {
         DAO m=new DAO();
         m.getNewId();
     }
-
 
     public void saveTmpData(String data, int idx){
         tmpData[idx]=data;
@@ -412,5 +417,6 @@ public class AppManager {
         m.deleteActivity(activity, SaveSharedPreferences.getUser(context));   //elimino dal db
         m.writeActivitiesToFile(activityList, context);    //rigenero il file
     }
+
 
 }

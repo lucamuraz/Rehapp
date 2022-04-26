@@ -19,7 +19,7 @@ import com.example.rehapp.Fragment.ReportFragment;
 import com.example.rehapp.R;
 import com.example.rehapp.SaveSharedPreferences;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.bottomnavigation.LabelVisibilityMode;
+import com.google.android.material.navigation.NavigationBarView;
 
 public class Home extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
@@ -32,7 +32,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         bottomNavigationView = findViewById(R.id.navigation);
         AppManager.getInstance().setBottomNavigationView(bottomNavigationView);
-        bottomNavigationView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_AUTO);
+        bottomNavigationView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_AUTO);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

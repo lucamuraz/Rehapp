@@ -35,6 +35,7 @@ public class DAO {
     String psw = null;
     String name ="";
     String edss ="";
+    String listSys="";
 
     public DAO(){
         initDatabase();
@@ -44,7 +45,7 @@ public class DAO {
         mDB = FirebaseDatabase.getInstance();
     }
 
-    public void register(String name, String userCode, String password, String EDSS){
+    public void register(String name, String userCode, String password, String EDSS, String sisetmi){
         DatabaseReference ref = mDB.getReference("Utenti").child(userCode);
         ref.setValue(userCode);
         DatabaseReference myRef = mDB.getReference("Utenti").child(userCode).child("Nome");
@@ -53,6 +54,8 @@ public class DAO {
         myRef3.setValue(password);
         DatabaseReference myReF4 = mDB.getReference("Utenti").child(userCode).child("EDSS");
         myReF4.setValue(EDSS);
+        DatabaseReference myRef6 = mDB.getReference("Utenti").child(userCode).child("Sistemi_funzionali");
+        myRef6.setValue(sisetmi);
         DatabaseReference myReF5 = mDB.getReference("Num_utenti");
         long idx=AppManager.getInstance().getLastIdx();
         myReF5.setValue(idx);
@@ -247,6 +250,9 @@ public class DAO {
                         case "EDSS":
                             edss = p.getValue().toString();
                             break;
+                        case "Sistemi_funzionali":
+                            listSys = p.getValue().toString();
+                            break;
                     }
                     Log.i(TAG, "Value is: " + psw); // legge la password.
 
@@ -302,6 +308,7 @@ public class DAO {
         SaveSharedPreferences.setUserPassword(ctx, psw);
         SaveSharedPreferences.setUserEdss(ctx, edss);
         SaveSharedPreferences.setUser(ctx, username);
+        SaveSharedPreferences.setSystems(ctx, listSys);
     }
 
     public void saveNewEDSS(String EDSS, String username){
@@ -326,4 +333,8 @@ public class DAO {
         myRef3.removeValue();
     }
 
+    public void editSystems(String user, String systems) {
+        DatabaseReference myRef6 = mDB.getReference("Utenti").child(user).child("Sistemi_funzionali");
+        myRef6.setValue(systems);
+    }
 }
